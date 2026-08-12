@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const titles = ["Designer", "Programmer", "Innovator", "Entrepreneur", "Builder"];
+const titles = ["Designer", "Builder", "Innovator"];
 
 export function RotatingTitle() {
   const [index, setIndex] = useState(0);

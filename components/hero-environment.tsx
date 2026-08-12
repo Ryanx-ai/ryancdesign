@@ -24,14 +24,13 @@ export function HeroEnvironment() {
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
     const lowPower = navigator.hardwareConcurrency <= 4 || connection?.saveData === true;
     const animated = !reduced && !lowPower;
-    const interactive = window.matchMedia("(pointer: fine)").matches && animated;
     const stars: Star[] = Array.from({ length: 76 }, (_, index) => ({
       x: seeded(index, 1), y: seeded(index, 2), depth: .35 + seeded(index, 3) * .9,
       phase: seeded(index, 4) * Math.PI * 2, pull: seeded(index, 5) > .46 ? 1 : -.55,
       kind: index % 23 === 0 ? "hero" : index % 5 === 0 ? "medium" : "tiny",
       duration: 2700 + seeded(index, 6) * 10400,
     }));
-    let width = 0, height = 0, frame = 0, visible = true, pointerX = -9999, pointerY = -9999, rolePulse = 0;
+    let width = 0, height = 0, frame = 0, visible = true, rolePulse = 0;
     let sparkleIndex = -1, sparkleStart = 0, nextSparkle = 7000 + seeded(9, 8) * 6000;
 
     const resize = () => {
@@ -42,13 +41,6 @@ export function HeroEnvironment() {
       node.style.width = `${width}px`; node.style.height = `${height}px`;
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     };
-    const move = (event: PointerEvent) => {
-      const rect = hero.getBoundingClientRect();
-      pointerX = event.clientX - rect.left; pointerY = event.clientY - rect.top;
-      hero.style.setProperty("--pointer-x", (((pointerX / width) - .5) * 2).toFixed(3));
-      hero.style.setProperty("--pointer-y", (((pointerY / height) - .5) * 2).toFixed(3));
-    };
-    const leave = () => { pointerX = -9999; pointerY = -9999; };
     const roleChange = () => { rolePulse = 1; };
     const visibilityChange = () => { if (!document.hidden && visible && !frame && animated) frame = requestAnimationFrame(draw); };
     const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible && !frame) frame = requestAnimationFrame(draw); }, { threshold: .01 });
@@ -68,11 +60,7 @@ export function HeroEnvironment() {
       const positions = stars.map((star) => {
         const baseX = star.x * width + Math.sin(time * .022 * star.depth + star.phase) * .38 * star.depth;
         const baseY = star.y * height + Math.cos(time * .018 * star.depth + star.phase) * .28 * star.depth;
-        const dx = pointerX - baseX, dy = pointerY - baseY;
-        const distance = Math.hypot(dx, dy) || 1;
-        const influence = interactive && distance < 150 ? Math.pow(1 - distance / 150, 2) : 0;
-        const shift = influence * 1.7 * star.depth * star.pull;
-        return { x: baseX + dx / distance * shift, y: baseY + dy / distance * shift, star };
+        return { x: baseX, y: baseY, star };
       });
 
       ctx.lineWidth = .65;
@@ -87,8 +75,7 @@ export function HeroEnvironment() {
             ctx.strokeStyle = `rgba(62,245,255,${((.056 * lineBreath) * (1 - distance / threshold) + rolePulse * .018).toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
-            const cursorBend = interactive ? Math.max(0, 1 - Math.hypot(pointerX - (a.x + b.x) / 2, pointerY - (a.y + b.y) / 2) / 210) * 1.15 : 0;
-            const bend = cursorBend + Math.sin(time * .12 + index) * .35;
+            const bend = Math.sin(time * .12 + index) * .35;
             ctx.quadraticCurveTo((a.x + b.x) / 2 + bend, (a.y + b.y) / 2 - bend, b.x, b.y);
             ctx.stroke();
           }
@@ -99,10 +86,9 @@ export function HeroEnvironment() {
         const cycle = animated ? Math.sin((now / star.duration) * Math.PI * 2 + star.phase) : 0;
         const range = star.kind === "tiny" ? .035 : star.kind === "medium" ? .065 : .085;
         const baseOpacity = star.kind === "tiny" ? .16 : star.kind === "medium" ? .22 : .28;
-        const nearby = interactive ? Math.max(0, 1 - Math.hypot(pointerX - x, pointerY - y) / 145) * .035 : 0;
         const sparkleAge = index === sparkleIndex ? now - sparkleStart : 999;
         const sparkle = sparkleAge >= 0 && sparkleAge < 220 ? Math.sin(sparkleAge / 220 * Math.PI) : 0;
-        const opacity = baseOpacity + cycle * range + nearby + rolePulse * .025 + sparkle * .18;
+        const opacity = baseOpacity + cycle * range + rolePulse * .025 + sparkle * .18;
         const radius = star.kind === "tiny" ? .62 : star.kind === "medium" ? .92 : 1.22;
         if (star.kind === "hero" || sparkle > 0) {
           const bloom = ctx.createRadialGradient(x, y, 0, x, y, radius * (sparkle > 0 ? 5 : 3.4));
@@ -122,13 +108,11 @@ export function HeroEnvironment() {
     resize(); observer.observe(hero); window.addEventListener("resize", resize);
     window.addEventListener("hero-role-change", roleChange);
     document.addEventListener("visibilitychange", visibilityChange);
-    if (interactive) { hero.addEventListener("pointermove", move); hero.addEventListener("pointerleave", leave); }
     draw(0);
     return () => {
       cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener("resize", resize);
       window.removeEventListener("hero-role-change", roleChange);
       document.removeEventListener("visibilitychange", visibilityChange);
-      hero.removeEventListener("pointermove", move); hero.removeEventListener("pointerleave", leave);
     };
   }, []);
 
