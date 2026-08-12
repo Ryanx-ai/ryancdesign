@@ -14,8 +14,7 @@ export function HeroEnvironment() {
 
   useEffect(() => {
     const node = canvas.current;
-    const hero = node?.closest<HTMLElement>(".hero");
-    if (!node || !hero) return;
+    if (!node) return;
     const context = node.getContext("2d");
     if (!context) return;
     const ctx = context;
@@ -30,20 +29,18 @@ export function HeroEnvironment() {
       kind: index % 23 === 0 ? "hero" : index % 5 === 0 ? "medium" : "tiny",
       duration: 2700 + seeded(index, 6) * 10400,
     }));
-    let width = 0, height = 0, frame = 0, visible = true, rolePulse = 0;
+    let width = 0, height = 0, frame = 0, rolePulse = 0; const visible = true;
     let sparkleIndex = -1, sparkleStart = 0, nextSparkle = 7000 + seeded(9, 8) * 6000;
 
     const resize = () => {
-      const rect = hero.getBoundingClientRect();
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      width = rect.width; height = rect.height;
+      width = window.innerWidth; height = window.innerHeight;
       node.width = Math.round(width * ratio); node.height = Math.round(height * ratio);
       node.style.width = `${width}px`; node.style.height = `${height}px`;
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     };
     const roleChange = () => { rolePulse = 1; };
     const visibilityChange = () => { if (!document.hidden && visible && !frame && animated) frame = requestAnimationFrame(draw); };
-    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible && !frame) frame = requestAnimationFrame(draw); }, { threshold: .01 });
 
     function draw(now: number) {
       frame = 0;
@@ -105,12 +102,12 @@ export function HeroEnvironment() {
       if (animated) frame = requestAnimationFrame(draw);
     }
 
-    resize(); observer.observe(hero); window.addEventListener("resize", resize);
+    resize(); window.addEventListener("resize", resize);
     window.addEventListener("hero-role-change", roleChange);
     document.addEventListener("visibilitychange", visibilityChange);
     draw(0);
     return () => {
-      cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener("resize", resize);
+      cancelAnimationFrame(frame); window.removeEventListener("resize", resize);
       window.removeEventListener("hero-role-change", roleChange);
       document.removeEventListener("visibilitychange", visibilityChange);
     };
