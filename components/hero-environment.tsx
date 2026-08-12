@@ -23,14 +23,14 @@ export function HeroEnvironment() {
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
     const lowPower = navigator.hardwareConcurrency <= 4 || connection?.saveData === true;
     const animated = !reduced && !lowPower;
-    const stars: Star[] = Array.from({ length: 92 }, (_, index) => ({
+    const stars: Star[] = Array.from({ length: 98 }, (_, index) => ({
       x: seeded(index, 1), y: seeded(index, 2), depth: .35 + seeded(index, 3) * .9,
       phase: seeded(index, 4) * Math.PI * 2, pull: seeded(index, 5) > .46 ? 1 : -.55,
       kind: index % 23 === 0 ? "hero" : index % 5 === 0 ? "medium" : "tiny",
-      duration: 2400 + seeded(index, 6) * 9200,
+      duration: 2100 + seeded(index, 6) * 8200,
     }));
     let width = 0, height = 0, frame = 0, rolePulse = 0; const visible = true;
-    let sparkleIndex = -1, sparkleStart = 0, nextSparkle = 4200 + seeded(9, 8) * 4400;
+    let sparkleIndex = -1, sparkleStart = 0, nextSparkle = 3200 + seeded(9, 8) * 3800;
 
     const resize = () => {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -52,7 +52,7 @@ export function HeroEnvironment() {
         const heroStars = stars.map((star, index) => ({ star, index })).filter(({ star }) => star.kind === "hero");
         sparkleIndex = heroStars[Math.floor(seeded(Math.floor(now / 1000), 9) * heroStars.length)]?.index ?? -1;
         sparkleStart = now;
-        nextSparkle = now + 4800 + seeded(Math.floor(now), 10) * 5200;
+        nextSparkle = now + 3800 + seeded(Math.floor(now), 10) * 4600;
       }
       const positions = stars.map((star) => {
         const baseX = star.x * width + Math.sin(time * .022 * star.depth + star.phase) * .38 * star.depth;
@@ -81,8 +81,8 @@ export function HeroEnvironment() {
       for (let index = 0; index < positions.length; index++) {
         const { x, y, star } = positions[index];
         const cycle = animated ? Math.sin((now / star.duration) * Math.PI * 2 + star.phase) : 0;
-        const range = star.kind === "tiny" ? .055 : star.kind === "medium" ? .1 : .14;
-        const baseOpacity = star.kind === "tiny" ? .23 : star.kind === "medium" ? .33 : .44;
+        const range = star.kind === "tiny" ? .07 : star.kind === "medium" ? .13 : .18;
+        const baseOpacity = star.kind === "tiny" ? .28 : star.kind === "medium" ? .4 : .52;
         const sparkleAge = index === sparkleIndex ? now - sparkleStart : 999;
         const sparkle = sparkleAge >= 0 && sparkleAge < 220 ? Math.sin(sparkleAge / 220 * Math.PI) : 0;
         const opacity = baseOpacity + cycle * range + rolePulse * .025 + sparkle * .24;

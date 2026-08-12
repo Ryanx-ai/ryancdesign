@@ -5,6 +5,7 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { HeroEnvironment } from "@/components/hero-environment";
+import { CursorTrail } from "@/components/cursor-trail";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" data-scroll-behavior="smooth"><body><SmoothScroll /><div className="site-atmosphere" aria-hidden="true"><div className="stars" /><HeroEnvironment /></div><Navigation />{children}<Footer /><Analytics /><SpeedInsights /></body></html>;
+  return <html lang="en" data-scroll-behavior="smooth"><body><SmoothScroll /><div className="site-atmosphere" aria-hidden="true"><div className="stars" /><HeroEnvironment /></div><CursorTrail /><Navigation />{children}<Footer /><Analytics /><SpeedInsights /></body></html>;
 }
