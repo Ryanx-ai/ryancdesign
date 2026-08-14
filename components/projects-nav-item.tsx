@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ui } from "@/lib/i18n";
+import { useLanguage } from "./language-provider";
 
 export function ProjectsNavItem() {
+  const { locale } = useLanguage();
   const [open, setOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -19,10 +22,10 @@ export function ProjectsNavItem() {
   return <button
     type="button"
     className="branding-link"
-    data-tooltip="Coming Soon"
+    data-tooltip={ui.navigation.comingSoon[locale]}
     data-open={open || undefined}
     onClick={reveal}
     onBlur={() => setOpen(false)}
-    aria-label="Projects — coming soon"
-  >Projects</button>;
+    aria-label={`${ui.navigation.projects[locale]} — ${ui.navigation.comingSoon[locale]}`}
+  >{ui.navigation.projects[locale]}</button>;
 }

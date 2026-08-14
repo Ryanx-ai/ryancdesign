@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import type { Locale } from "./i18n";
+
+export type ProjectTranslation = { title?: string; summary?: string; body?: string };
 
 export type Project = {
   slug: string;
@@ -15,6 +18,7 @@ export type Project = {
   gallery: string[];
   body: string;
   readingTime: number;
+  translations: Partial<Record<Locale, ProjectTranslation>>;
 };
 
 const root = path.join(process.cwd(), "content/projects");
@@ -37,9 +41,16 @@ export function getProjects({ includeUnpublished = false } = {}): Project[] {
       gallery: Array.isArray(data.gallery) ? data.gallery.map(String) : [],
       body: content.trim(),
       readingTime: Math.max(1, Math.ceil(content.split(/\s+/).length / 220)),
+      translations: data.translations && typeof data.translations === "object" ? data.translations as Partial<Record<Locale, ProjectTranslation>> : {},
     };
   });
   return projects.filter((project) => includeUnpublished || project.status === "published").sort((a, b) => b.year.localeCompare(a.year));
+}
+
+export function getLocalizedProject(project: Project, locale: Locale): Project {
+  const translation = project.translations[locale];
+  if (!translation) return project;
+  return { ...project, title: translation.title || project.title, summary: translation.summary || project.summary, body: translation.body || project.body };
 }
 
 export function getProject(slug: string, options?: { includeUnpublished?: boolean }) {
