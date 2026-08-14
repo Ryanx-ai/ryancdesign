@@ -9,8 +9,8 @@ export default function Home() {
   const projects = getProjects();
   return <main className="landing-experience" id="top">
     <ScrollStory />
-    <section className="gallery-section shell" id="portfolio"><PortfolioHeading /><ProjectGallery projects={projects} /></section>
     <ExperienceSection />
+    <section className="gallery-section shell" id="portfolio"><PortfolioHeading /><ProjectGallery projects={projects} /></section>
     <ContactSection />
   </main>;
 }

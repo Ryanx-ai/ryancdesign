@@ -25,10 +25,15 @@ export const ui = {
     resume: { en: "Résumé", zh: "履历" },
   },
   ryan: {
-    heading: { en: "I am Ryan.", zh: "我是 Ryan。" },
+    heading: { en: "Hi, I’m Ryan.", zh: "你好，我是 Ryan。" },
+    statement: { en: "Designing across disciplines.", zh: "跨越不同领域进行设计。" },
+    summary: {
+      en: "Designer, builder and entrepreneur with six years across design, education, technology, startups, product innovation, venture building and regional growth.",
+      zh: "设计师、创造者与创业者，拥有六年横跨设计、教育、科技、初创企业、产品创新、创业孵化与区域增长的经验。",
+    },
     roles: {
-      en: ["Builder", "Designer", "Strategist", "Entrepreneur"],
-      zh: ["创造者", "设计师", "策略师", "创业者"],
+      en: ["Designer", "Builder", "Entrepreneur"],
+      zh: ["设计师", "创造者", "创业者"],
     },
   },
 } satisfies Record<string, unknown>;

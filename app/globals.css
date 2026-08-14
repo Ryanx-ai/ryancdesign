@@ -1,4 +1,4 @@
-:root{--bg:#050505;--surface:#0f1115;--surface-2:#151820;--text:#fff;--muted:#9ca3af;--accent:#3ef5ff;--accent-hover:#67f9ff;--line:rgba(255,255,255,.1);--r-sm:10px;--r-md:18px;--r-lg:28px;--shadow:0 20px 80px rgba(0,0,0,.45);--ease:cubic-bezier(.22,1,.36,1);--section:clamp(6rem,12vw,12rem);--max:1280px}
+:root{--font-body:"Inter Variable";--font-display-serif:"Instrument Serif";--bg:#050505;--surface:#0f1115;--surface-2:#151820;--text:#fff;--muted:#9ca3af;--accent:#3ef5ff;--accent-hover:#67f9ff;--line:rgba(255,255,255,.1);--r-sm:10px;--r-md:18px;--r-lg:28px;--shadow:0 20px 80px rgba(0,0,0,.45);--ease:cubic-bezier(.22,1,.36,1);--section:clamp(6rem,12vw,12rem);--max:1280px}
 *{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--text);font-family:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}::selection{background:var(--accent);color:#001114}.shell{width:min(calc(100% - 40px),var(--max));margin-inline:auto}.section{padding-block:var(--section);position:relative}.eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:700}.section-head{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:4.5rem}.section-head h2{font-size:clamp(2.8rem,7vw,6rem);letter-spacing:-.065em;line-height:.9;margin:.7rem 0 0}.section-head p{color:var(--muted);font-size:clamp(1rem,1.7vw,1.25rem);line-height:1.65;align-self:end;max-width:36rem}.glass{background:rgba(15,17,21,.7);border:1px solid var(--line);backdrop-filter:blur(18px)}
 .button{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:46px;padding:0 1rem;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);font-size:.86rem;font-weight:650;transition:.35s var(--ease);cursor:pointer}.button:hover{border-color:rgba(62,245,255,.45);color:var(--accent-hover);transform:translateY(-2px)}.button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.button.primary{background:var(--accent);color:#001114;border-color:var(--accent)}.button.primary:hover{background:var(--accent-hover);color:#001114;box-shadow:0 0 28px rgba(62,245,255,.18)}
 .nav{position:fixed;z-index:50;top:18px;left:50%;transform:translateX(-50%);width:min(calc(100% - 28px),900px);height:58px;border-radius:999px;display:flex;align-items:center;padding:7px 12px 7px 16px;justify-content:space-between}.brand{display:flex;align-items:center;gap:.55rem;font-weight:750;letter-spacing:-.03em}.brand-mark{transition:transform .35s var(--ease),filter .35s var(--ease)}.brand:hover .brand-mark{transform:scale(1.03);filter:sepia(1) saturate(8) hue-rotate(135deg)}.navlinks{display:flex;align-items:center;gap:4px}.navlinks a{position:relative;color:var(--muted);padding:.7rem .8rem;font-size:.78rem;transition:.2s}.navlinks a:after{content:"";position:absolute;left:.8rem;right:.8rem;bottom:.45rem;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}.navlinks a:hover{color:#fff}.navlinks a:hover:after{transform:scaleX(1)}
@@ -65,3 +65,93 @@ body>.cursor-trail{position:fixed;inset:0;z-index:80;pointer-events:none;filter:
 @media(max-width:900px){.built-project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.built-project-panel{grid-template-columns:1fr}.built-project-panel-media{min-height:42svh}}
 @media(max-width:560px){.built-project-grid{grid-template-columns:1fr}.built-project-panel{width:calc(100vw - 16px);max-height:calc(100svh - 16px)}.built-project-panel-media{min-height:36svh}.built-project-panel-copy{padding:2rem 1.25rem}.built-project-panel-copy h2{font-size:3rem}}
 html[data-locale="zh"] .editorial-heading h2{font-size:clamp(3rem,5vw,5rem);letter-spacing:-.035em}html[data-locale="zh"] .editorial-heading h2 em{white-space:nowrap}.built-project-panel-gallery{display:grid;gap:.75rem;margin:1.5rem 0}.built-project-panel-gallery figure{position:relative;aspect-ratio:16/7;margin:0;overflow:hidden;border:1px solid var(--line);border-radius:var(--r-sm);background:#07080a}.built-project-panel-gallery img{object-fit:contain;padding:1rem}
+
+/* RCD v3.0.1 — deliberate editorial hierarchy */
+body{font-family:var(--font-body),"Helvetica Neue",Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif}
+h1,h2,.editorial-heading h2{font-family:var(--font-display-serif),"Songti SC","STSong",serif;font-weight:400}
+.philosophy-content h1{font-family:var(--font-display-serif),"Songti SC","STSong",serif;font-size:clamp(3.25rem,7.3vw,7rem);line-height:.9;letter-spacing:-.035em}
+.materialise-line>span{font-family:inherit;font-weight:400}
+.materialise-line .anchor-word{font-style:italic;letter-spacing:-.02em}
+.ryan-copy h2{font-family:var(--font-display-serif),"Songti SC","STSong",serif;font-size:clamp(3.75rem,7vw,7rem);font-weight:400;letter-spacing:-.045em}
+.typed-identity{font-family:var(--font-body),"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:clamp(1.45rem,2.8vw,2.7rem);font-weight:650;letter-spacing:.045em}
+.ryan-narrative{max-width:39rem;margin-top:1.5rem}
+.ryan-narrative h3{margin:0;font-family:var(--font-display-serif),"Songti SC","STSong",serif;font-size:clamp(2rem,3.4vw,3.25rem);font-weight:400;line-height:1.02;letter-spacing:-.025em}
+.ryan-narrative p{max-width:65ch;margin:1rem 0 0;color:#a4a9b1;font-size:clamp(.9rem,1.1vw,1rem);line-height:1.62}
+.experience-section{padding-block:clamp(4rem,8vw,8rem) clamp(8rem,12vw,12rem)}
+.experience-life{position:relative;padding-left:clamp(3.5rem,7vw,6.5rem)}
+.experience-line{top:1.25rem;bottom:0;left:0;transform:none;background:rgba(62,245,255,.11)}
+.experience-chapter{padding-bottom:clamp(6.5rem,10vw,10rem)}
+.experience-chapter>.editorial-heading{width:min(100%,940px);padding:0 0 clamp(3rem,5vw,5rem);background:none}
+.editorial-heading>.eyebrow{margin-bottom:.9rem;font-family:var(--font-body),"Helvetica Neue",Helvetica,Arial,sans-serif;color:var(--accent);font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.editorial-heading h2{max-width:900px;font-size:clamp(3rem,5.8vw,5.75rem);line-height:.93;letter-spacing:-.035em;text-wrap:balance}
+.editorial-heading h2 em{font-size:1em;font-style:italic;font-weight:400;letter-spacing:-.02em}
+.experience-items{gap:clamp(3rem,5vw,4.5rem)}
+.experience-item,.experience-item:nth-child(even){display:grid;grid-template-columns:minmax(115px,165px) minmax(0,650px);gap:clamp(1.5rem,4vw,4rem);min-height:0;padding-left:0}
+.experience-item:nth-child(odd) .experience-meta,.experience-item:nth-child(even) .experience-meta,.experience-item:nth-child(odd) .experience-copy,.experience-item:nth-child(even) .experience-copy{grid-column:auto;grid-row:auto;padding:0;text-align:left}
+.experience-node{top:.2rem;left:calc(-1 * clamp(3.5rem,7vw,6.5rem));width:10px;height:10px;transform:translateX(-50%)}
+.experience-item:after,.experience-item:nth-child(even):after{top:.5rem;left:calc(-1 * clamp(3.5rem,7vw,6.5rem));width:clamp(2rem,5vw,4.5rem);transform:none;background:linear-gradient(90deg,var(--accent),rgba(62,245,255,.16))}
+.experience-meta>span{font-size:.76rem}
+.experience-meta small{font-size:.65rem;line-height:1.5}
+.experience-copy{max-width:650px}
+.experience-copy h3{font-family:var(--font-display-serif),"Songti SC","STSong",serif;margin:0 0 .45rem;font-size:clamp(1.6rem,2.5vw,2.25rem);font-weight:400;line-height:1.05;letter-spacing:-.025em}
+.experience-copy strong{font-size:.84rem;line-height:1.45}
+.experience-description{position:relative;max-width:64ch}
+.experience-description p{display:-webkit-box;margin:.8rem 0 0;overflow:hidden;color:#9298a1;font-size:.92rem;line-height:1.62;-webkit-box-orient:vertical;-webkit-line-clamp:3}
+.experience-description.overflowing:not(.expanded):after{content:"";position:absolute;right:0;bottom:0;width:45%;height:1.7em;pointer-events:none;background:linear-gradient(90deg,transparent,var(--bg) 88%)}
+.experience-description.expanded p{display:block;overflow:visible;-webkit-line-clamp:unset}
+.experience-description.expanded:after{opacity:0}
+.experience-description button{margin:.7rem 0 0;padding:0;border:0;background:transparent;color:var(--accent);font:600 .7rem/1 var(--font-body),sans-serif;letter-spacing:.035em;cursor:pointer}
+.experience-description button:hover,.experience-description button:focus-visible{color:#fff}
+.experience-metrics{display:flex;flex-wrap:wrap;gap:.65rem 1.4rem;margin-top:1.15rem}
+.experience-metrics div{min-width:70px;border-left:1px solid rgba(62,245,255,.35);padding-left:.65rem}
+.experience-metrics strong{display:block;color:#fff;font-family:var(--font-display-serif),serif;font-size:1.4rem;font-weight:400;line-height:1}
+.experience-metrics span{display:block;margin-top:.3rem;color:#767d86;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase}
+.achievement-list{border-top:0}
+.achievement-list article{grid-template-columns:90px minmax(0,650px);padding:1.4rem 0;border-bottom:1px solid var(--line)}
+.achievement-list article>span{font-size:.7rem}
+.achievement-list h3{font-family:var(--font-display-serif),"Songti SC","STSong",serif;font-size:clamp(1.35rem,2vw,1.9rem);font-weight:400;letter-spacing:-.02em}
+.achievement-list p{max-width:64ch;font-size:.88rem;line-height:1.55}
+.toolkit{padding-bottom:clamp(7rem,11vw,11rem)}
+.tool-branch{position:relative;width:66.666%;height:64px;margin:0 auto}
+.tool-branch>i{position:absolute;left:50%;top:0;width:1px;height:32px;background:var(--accent);box-shadow:0 0 12px rgba(62,245,255,.2)}
+.tool-branch:after{content:"";position:absolute;left:0;right:0;top:32px;height:1px;background:linear-gradient(90deg,var(--accent),#168eaa,var(--accent))}
+.tool-branch span{position:absolute;top:32px;width:1px;height:32px;background:var(--accent)}
+.tool-branch span:nth-of-type(1){left:0}.tool-branch span:nth-of-type(2){left:50%}.tool-branch span:nth-of-type(3){right:0}
+.tool-groups{gap:clamp(1.5rem,4vw,4rem)}
+.tool-groups article{position:relative;border-top:0;padding:1.25rem 0 2.25rem}
+.tool-column-line{position:absolute;z-index:-1;top:0;bottom:0;left:0;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(62,245,255,.08) 88%,transparent)}
+.tool-groups h3{display:flex;align-items:center;gap:.6rem;margin:0 0 1.3rem;padding-left:1rem;font-size:.68rem}
+.tool-groups article>div:not(.tool-column-line){padding-left:1rem}
+.tool-groups span{font-size:.7rem}
+.footer{padding:3rem 0 3.5rem}
+.footer-inner{justify-content:center;text-align:center}
+.footer-signature{flex-direction:column;gap:.7rem}
+.footer-signature small{display:inline-block;margin-top:.3rem}
+
+@media(max-width:800px){
+  .philosophy-content h1{font-size:clamp(2rem,9vw,4rem);letter-spacing:-.025em}
+  .ryan-intro{padding-top:6rem;gap:2rem}
+  .ryan-copy h2{font-size:clamp(3.25rem,14vw,5rem)}
+  .typed-identity{font-size:clamp(1.35rem,6.5vw,2rem)}
+  .ryan-narrative h3{font-size:clamp(2rem,9vw,3rem)}
+  .ryan-narrative p{font-size:.9rem;line-height:1.58}
+  .experience-life{padding-left:2.25rem}
+  .experience-line{left:0}
+  .experience-chapter>.editorial-heading{padding-left:0}
+  .editorial-heading h2{font-size:clamp(2.6rem,11vw,4.2rem);line-height:.95}
+  .experience-item,.experience-item:nth-child(even){grid-template-columns:1fr;gap:.65rem;padding-left:0}
+  .experience-node{left:-2.25rem}
+  .experience-item:after,.experience-item:nth-child(even):after{left:-2.25rem;width:1.75rem}
+  .experience-meta small{margin-top:.35rem}
+  .experience-copy h3{font-size:clamp(1.45rem,7vw,1.9rem)}
+  .experience-description p{font-size:.88rem;line-height:1.58}
+  .achievement-list{margin-left:0}
+  .achievement-list article{grid-template-columns:58px 1fr;gap:.9rem}
+  .tool-branch{display:none}
+  .tool-groups{grid-template-columns:1fr;margin-left:0;gap:1.5rem}
+  .tool-groups article{padding-left:1rem}
+}
+
+html[data-locale="zh"] .editorial-heading h2{font-family:"Songti SC","STSong",serif;font-size:clamp(2.75rem,5vw,4.8rem);line-height:1.02;letter-spacing:-.02em}
+html[data-locale="zh"] .editorial-heading h2 em{font-family:"Songti SC","STSong",serif;font-style:normal;white-space:normal}
+html[data-locale="zh"] .ryan-narrative h3,html[data-locale="zh"] .experience-copy h3,html[data-locale="zh"] .achievement-list h3{font-family:"Songti SC","STSong",serif}
