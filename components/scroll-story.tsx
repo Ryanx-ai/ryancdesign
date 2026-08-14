@@ -9,7 +9,7 @@ import { FileText, Github, Linkedin, Mail } from "lucide-react";
 const identities = ["Designer", "Builder", "Entrepreneur"];
 
 function Materialise({ text, anchor }: { text: string; anchor: string }) {
-  return <span className="materialise-line" aria-label={text}>{text.split("").map((letter, index) => <motion.span className={text.endsWith(anchor) && index >= text.length - anchor.length ? "anchor-word" : ""} aria-hidden="true" key={`${letter}-${index}`} initial={{ opacity: 0, y: 18, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true }} transition={{ duration: .65, delay: index * .045, ease: [.22, 1, .36, 1] }}>{letter === " " ? "\u00a0" : letter}</motion.span>)}</span>;
+  return <span className="materialise-line" aria-label={text}>{text.split("").map((letter, index) => <motion.span className={`${text.endsWith(anchor) && index >= text.length - anchor.length ? "anchor-word" : ""}${letter === "D" ? " terminal-d" : ""}`} aria-hidden="true" key={`${letter}-${index}`} initial={{ opacity: 0, y: 18, filter: "blur(8px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true }} transition={{ duration: .65, delay: index * .045, ease: [.22, 1, .36, 1] }}>{letter === " " ? "\u00a0" : letter === "D" ? <span className="terminal-d-glyph">D</span> : letter}</motion.span>)}</span>;
 }
 
 function TypeIdentity() {
@@ -40,7 +40,7 @@ export function ScrollStory() {
   return <div className="splice-story">
     <section ref={philosophy} className="splice splice-philosophy">
       <motion.div className="philosophy-content" style={reduced ? undefined : { opacity: philosophyOpacity, scale: philosophyScale, letterSpacing: philosophySpread }}>
-        <BrandMark size={58} /><h1><Materialise text="CULTURED MIND" anchor="MIND" /><Materialise text="SKILFUL HAND" anchor="HAND" /></h1>
+        <BrandMark size={58} /><h1><Materialise text="CULTURED MIND" anchor="MIND" /><Materialise text="SKILFUL HAND" anchor="HAND" /></h1><Image className="philosophy-signature" src="/images/ryan/signature.png" alt="RyanC signature" width={978} height={455} />
         <div className="story-prompt"><span>See how it connects</span><i /></div>
       </motion.div>
     </section>

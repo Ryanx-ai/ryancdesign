@@ -50,3 +50,7 @@ body>.cursor-trail{position:fixed;inset:0;z-index:80;pointer-events:none;filter:
 .portfolio-archive.curated .archive-smoke{height:min(68%,820px)}
 .portfolio-archive.expanded+.archive-toggle{margin-top:clamp(1.75rem,3vw,2.75rem)}
 @media(max-width:800px){.portfolio-archive.curated .archive-smoke{height:min(72%,840px)}.portfolio-archive.expanded+.archive-toggle{margin-top:1.75rem}}
+.philosophy-content h1{letter-spacing:-.04em}
+.materialise-line .terminal-d{margin-left:.018em}
+.terminal-d-glyph{display:inline-block;transform:scaleX(1.065);transform-origin:left center;margin-right:.035em}
+.philosophy-signature{width:clamp(88px,8vw,124px);height:auto;margin-top:clamp(1rem,2vw,1.5rem);filter:invert(1) brightness(1.35);opacity:.76}
