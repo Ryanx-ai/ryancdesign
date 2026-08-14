@@ -7,8 +7,8 @@ import { Footer } from "@/components/footer";
 import { HeroEnvironment } from "@/components/hero-environment";
 import { CursorTrail } from "@/components/cursor-trail";
 import { LanguageProvider } from "@/components/language-provider";
-import "@fontsource/instrument-serif/latin-400.css";
-import "@fontsource/instrument-serif/latin-400-italic.css";
+import "@fontsource-variable/eb-garamond/wght.css";
+import "@fontsource-variable/eb-garamond/wght-italic.css";
 import "@fontsource-variable/inter/wght.css";
 import "./globals.css";
 

@@ -21,9 +21,9 @@ export type Achievement = {
 export type ToolGroup = { name: LocalizedText; tools: string[] };
 
 export const education: ExperienceItem[] = [
-  { organisation: "National University of Singapore", role: { en: "Bachelor of Industrial Design · Honours with Merit", zh: "工业设计学士 · 荣誉优等" }, period: "2016–2020", meta: { en: "Industrial Design", zh: "工业设计" }, description: { en: "A foundation in product, service and experience design grounded in research, prototyping and making.", zh: "以研究、原型制作与实践为基础，建立产品、服务和体验设计能力。" } },
-  { organisation: "MAGES Institute", role: { en: "Certificate in Game Design & Game Development", zh: "游戏设计与游戏开发证书" }, period: "2021", meta: { en: "Interactive Media", zh: "互动媒体" }, description: { en: "Applied study in interactive systems, game design and development.", zh: "专注于互动系统、游戏设计与开发的应用学习。" } },
   { organisation: "National University of Singapore", role: { en: "Master of Design in Integrated Design", zh: "整合设计硕士" }, period: "2024–2025", meta: { en: "Design · Strategy · Systems", zh: "设计 · 策略 · 系统" }, description: { en: "Advanced study connecting design practice, strategy and complex systems.", zh: "将设计实践、策略思维与复杂系统相连接的进阶学习。" } },
+  { organisation: "MAGES Institute", role: { en: "Certificate in Game Design & Game Development", zh: "游戏设计与游戏开发证书" }, period: "2021", meta: { en: "Interactive Media", zh: "互动媒体" }, description: { en: "Applied study in interactive systems, game design and development.", zh: "专注于互动系统、游戏设计与开发的应用学习。" } },
+  { organisation: "National University of Singapore", role: { en: "Bachelor of Industrial Design · Honours with Merit", zh: "工业设计学士 · 荣誉优等" }, period: "2016–2020", meta: { en: "Industrial Design", zh: "工业设计" }, description: { en: "A foundation in product, service and experience design grounded in research, prototyping and making.", zh: "以研究、原型制作与实践为基础，建立产品、服务和体验设计能力。" } },
 ];
 
 export const work: ExperienceItem[] = [
@@ -82,11 +82,11 @@ export const work: ExperienceItem[] = [
 ];
 
 export const achievements: Achievement[] = [
-  { title: "Five-Continent Student Symposium — Tokyo", detail: { en: "NUS Division of Industrial Design representative / nominee", zh: "新加坡国立大学工业设计系代表 / 提名人选" }, year: "2019" },
+  { title: "Motion Design Education Summit — MODE’23", detail: { en: "Co-author — “The Emerging Medium of Posters in Motion”", zh: "共同作者——《动态海报：正在兴起的媒介》" }, year: "2023" },
+  { title: "Huawei Tech4City Competition", detail: { en: "4th Place · Team Lead / Product Designer · Project Isolert", zh: "第四名 · 团队负责人 / 产品设计师 · Isolert 项目" }, year: "2022", metrics: [{ value: "$1K", label: { en: "Commendation", zh: "嘉奖奖金" } }] },
   { title: "NUS GRIP Run 6", detail: { en: "Research Grant & Startup Accelerator — Alpha Electrics", zh: "研究资助与创业加速计划——Alpha Electrics" }, year: "2020", metrics: [{ value: "$10K", label: { en: "Raised", zh: "筹得资金" } }] },
   { title: "NUS Resilience & Growth Grant", detail: { en: "NUS CFG × NUS Enterprise — Alpha Electrics", zh: "NUS CFG × NUS Enterprise——Alpha Electrics" }, year: "2020", metrics: [{ value: "$50K", label: { en: "Raised", zh: "筹得资金" } }] },
-  { title: "Huawei Tech4City Competition", detail: { en: "4th Place · Team Lead / Product Designer · Project Isolert", zh: "第四名 · 团队负责人 / 产品设计师 · Isolert 项目" }, year: "2022", metrics: [{ value: "$1K", label: { en: "Commendation", zh: "嘉奖奖金" } }] },
-  { title: "Motion Design Education Summit — MODE’23", detail: { en: "Co-author — “The Emerging Medium of Posters in Motion”", zh: "共同作者——《动态海报：正在兴起的媒介》" }, year: "2023" },
+  { title: "Five-Continent Student Symposium — Tokyo", detail: { en: "NUS Division of Industrial Design representative / nominee", zh: "新加坡国立大学工业设计系代表 / 提名人选" }, year: "2019" },
 ];
 
 export const toolGroups: ToolGroup[] = [
