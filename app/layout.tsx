@@ -9,10 +9,11 @@ import { CursorTrail } from "@/components/cursor-trail";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://www.ryanc.design"),
-  title: { default: "RyanC — Product Designer, Strategist & Builder", template: "%s — RyanC" },
-  description: "RyanC designs products, builds ventures, and creates experiences that connect people.",
-  openGraph: { title: "RyanC — Product Designer, Strategist & Builder", description: "Product design, strategy, entrepreneurship and education.", type: "website" },
+  metadataBase: new URL("https://www.ryanc.design"),
+  title: { default: "RyanC | Design", template: "%s | RyanC" },
+  description: "The design portfolio and evolving project ecosystem of RyanC.",
+  alternates: { canonical: "/" },
+  openGraph: { title: "RyanC | Design", description: "Design work, products, ventures and experiments by RyanC.", type: "website", url: "/" },
   twitter: { card: "summary_large_image" },
 };
 

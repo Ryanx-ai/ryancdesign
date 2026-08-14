@@ -1,6 +1,7 @@
 import type { NextAuthConfig } from "next-auth";
 
 const authConfig = {
+  trustHost: true,
   session: { strategy: "jwt" },
   pages: { signIn: "/admin/login" },
   providers: [],
