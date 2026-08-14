@@ -53,4 +53,5 @@ body>.cursor-trail{position:fixed;inset:0;z-index:80;pointer-events:none;filter:
 .philosophy-content h1{letter-spacing:-.04em}
 .materialise-line .terminal-d{margin-left:.018em}
 .terminal-d-glyph{display:inline-block;transform:scaleX(1.065);transform-origin:left center;margin-right:.035em}
+.anchor-word .terminal-d-glyph{color:transparent;background:linear-gradient(105deg,var(--accent),#3bb0ff,var(--accent));background-size:220% 100%;background-clip:text;-webkit-background-clip:text}
 .philosophy-signature{width:clamp(88px,8vw,124px);height:auto;margin-top:clamp(1rem,2vw,1.5rem);filter:invert(1) brightness(1.35);opacity:.76}

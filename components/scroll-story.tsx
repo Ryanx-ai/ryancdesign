@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { BrandMark } from "@/components/brand-mark";
-import { FileText, Github, Linkedin, Mail } from "lucide-react";
+import { FileText, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
 
 const identities = ["Designer", "Builder", "Entrepreneur"];
 
@@ -46,7 +46,7 @@ export function ScrollStory() {
     </section>
     <section className="splice splice-ryan">
       <motion.div className="ryan-intro shell" initial={reduced ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ amount: .55 }} transition={{ duration: .7 }}>
-        <div className="ryan-copy"><h2>Hi, I’m Ryan!</h2><TypeIdentity /><div className="ryan-actions" aria-label="Connect with Ryan"><a href="mailto:ryanchinqf2@gmail.com" aria-label="Email Ryan"><Mail size={17} /><span>Email</span></a><a href="https://www.linkedin.com/in/ryan-chin-1388961a7/" target="_blank" rel="noreferrer" aria-label="Ryan on LinkedIn"><Linkedin size={17} /><span>LinkedIn</span></a><a href="https://github.com/Ryanx-ai" target="_blank" rel="noreferrer" aria-label="Ryan on GitHub"><Github size={17} /><span>GitHub</span></a><a href="/documents/ryan-chin-resume.pdf" target="_blank" rel="noreferrer" aria-label="Ryan’s résumé"><FileText size={17} /><span>Résumé</span></a></div></div>
+        <div className="ryan-copy"><h2>Hi, I’m Ryan!</h2><TypeIdentity /><div className="ryan-actions" aria-label="Connect with Ryan"><a href="mailto:ryanchinqf2@gmail.com" aria-label="Email Ryan"><Mail size={17} /><span>Email</span></a><a href="https://wa.me/6591443890" target="_blank" rel="noreferrer" aria-label="Message Ryan on WhatsApp"><MessageCircle size={17} /><span>WhatsApp</span></a><a href="https://www.linkedin.com/in/ryan-chin-1388961a7/" target="_blank" rel="noreferrer" aria-label="Ryan on LinkedIn"><Linkedin size={17} /><span>LinkedIn</span></a><a href="https://github.com/Ryanx-ai" target="_blank" rel="noreferrer" aria-label="Ryan on GitHub"><Github size={17} /><span>GitHub</span></a><a href="/documents/ryan-chin-resume.pdf" target="_blank" rel="noreferrer" aria-label="Ryan’s résumé"><FileText size={17} /><span>Résumé</span></a></div></div>
         <motion.div className="orbital-portrait" initial={reduced ? false : { opacity: 0, scale: .88 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ amount: .5 }} transition={{ type: "spring", stiffness: 100, damping: 22 }}><i /><i /><div><Image src="/images/ryan/portrait.jpg" alt="RyanC celebrating amid gold confetti" fill priority sizes="(max-width:800px) 72vw, 38vw" /></div></motion.div>
       </motion.div>
     </section>
