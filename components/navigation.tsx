@@ -12,7 +12,7 @@ export function Navigation() {
   return <nav className="nav glass" aria-label="Primary">
     <Link href="/#top" className="brand" aria-label="Return to top"><BrandMark size={30} /></Link>
     <div className="navlinks">
-      <Link href="/#portfolio">{ui.navigation.portfolio[locale]}</Link><Link href="/#contact">{ui.navigation.contact[locale]}</Link><ProjectsNavItem /><LanguageSwitcher />
+      <Link href="/#portfolio">{ui.navigation.portfolio[locale]}</Link><ProjectsNavItem /><Link href="/#contact">{ui.navigation.contact[locale]}</Link><LanguageSwitcher />
     </div>
   </nav>;
 }

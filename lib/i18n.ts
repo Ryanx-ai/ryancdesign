@@ -11,8 +11,13 @@ export const ui = {
     comingSoon: { en: "Coming Soon", zh: "即将推出" },
   },
   portfolio: {
-    title: { en: "Portfolio", zh: "作品集" },
-    subtitle: { en: "Exploratory · Speculative · Applied", zh: "探索 · 推演 · 实践" },
+    eyebrow: { en: "Portfolio", zh: "作品集" },
+    titleBefore: { en: "Works I’ve", zh: "我完成的" },
+    titleEmphasis: { en: "done", zh: "作品" },
+    description: {
+      en: "A selection of work spanning UI/UX, product and strategy, branding, education, exploratory concepts, and independent design projects.",
+      zh: "涵盖 UI/UX、产品与策略、品牌、教育、探索性概念及独立设计项目的精选作品。",
+    },
     showAll: { en: "Show all", zh: "查看全部" },
     hideAll: { en: "Hide all", zh: "收起" },
   },

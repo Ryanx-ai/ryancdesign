@@ -18,7 +18,13 @@ export type Achievement = {
   metrics?: ExperienceMetric[];
 };
 
-export type ToolGroup = { name: LocalizedText; tools: string[] };
+export type ToolSection = { name?: LocalizedText; tools: string[] };
+
+export type ToolGroup = {
+  name: LocalizedText;
+  descriptor?: LocalizedText;
+  sections: ToolSection[];
+};
 
 export const education: ExperienceItem[] = [
   { organisation: "National University of Singapore", role: { en: "Master of Design in Integrated Design", zh: "整合设计硕士" }, period: "2024–2025", meta: { en: "Design · Strategy · Systems", zh: "设计 · 策略 · 系统" }, description: { en: "Advanced study connecting design practice, strategy and complex systems.", zh: "将设计实践、策略思维与复杂系统相连接的进阶学习。" } },
@@ -90,7 +96,21 @@ export const achievements: Achievement[] = [
 ];
 
 export const toolGroups: ToolGroup[] = [
-  { name: { en: "Design", zh: "设计" }, tools: ["Figma", "Adobe Illustrator", "Photoshop", "After Effects", "Premiere Pro", "InDesign", "Rhino", "KeyShot", "AutoCAD"] },
-  { name: { en: "Product / Prototyping", zh: "产品 / 原型" }, tools: ["Miro", "Unity", "Unreal Engine", "Prototyping", "Workshop Tools"] },
-  { name: { en: "Development", zh: "开发" }, tools: ["TypeScript", "JavaScript", "React", "Next.js", "HTML", "CSS", "Python", "C++", "Git", "GitHub", "Vercel"] },
+  {
+    name: { en: "Design", zh: "设计" },
+    sections: [{ tools: ["Figma", "Sketch", "Illustrator", "Photoshop", "After Effects", "Premiere Pro", "Rhino", "KeyShot", "AutoCAD", "Blender", "ZBrush"] }],
+  },
+  {
+    name: { en: "Build", zh: "构建" },
+    descriptor: { en: "Physical + interactive prototyping", zh: "实体与交互原型" },
+    sections: [{ tools: ["Arduino", "Unity", "Unreal Engine", "Miro", "Webflow", "OBS", "Scratch"] }],
+  },
+  {
+    name: { en: "Develop", zh: "开发" },
+    sections: [
+      { name: { en: "Languages", zh: "语言" }, tools: ["TypeScript", "JavaScript", "Python", "C++", "C#", "Swift", "HTML / CSS"] },
+      { name: { en: "Frameworks / Infrastructure", zh: "框架 / 基础设施" }, tools: ["React", "Next.js", "Flask", "Git", "GitHub", "Vercel", "SQL / SQLite"] },
+      { name: { en: "AI / ML", zh: "人工智能 / 机器学习" }, tools: ["OpenAI API", "Claude", "Codex", "LLM Integration", "Prompt Engineering"] },
+    ],
+  },
 ];

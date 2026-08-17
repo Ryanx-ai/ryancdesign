@@ -115,9 +115,24 @@ body{font-family:var(--font-body),"Helvetica Neue",Helvetica,Arial,"PingFang SC"
 .tool-groups{gap:clamp(1.5rem,4vw,4rem)}
 .tool-groups article{position:relative;border-top:0;padding:1.25rem 0 2.25rem}
 .tool-column-line{position:absolute;z-index:-1;top:0;bottom:0;left:0;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(62,245,255,.08) 88%,transparent)}
-.tool-groups h3{display:flex;align-items:center;gap:.6rem;margin:0 0 1.3rem;padding-left:1rem;font-size:.68rem}
-.tool-groups article>div:not(.tool-column-line){padding-left:1rem}
-.tool-groups span{font-size:.7rem}
+.tool-groups article>header{min-height:3.4rem;padding-left:1rem}
+.tool-groups h3{display:flex;align-items:center;gap:.6rem;margin:0;color:var(--accent);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}
+.tool-groups article>header p{margin:.45rem 0 0;color:#737983;font-size:.66rem;line-height:1.4}
+.tool-sections{display:grid;gap:1.4rem;padding-left:1rem}
+.tool-sections section{display:grid;gap:.65rem}
+.tool-sections h4{margin:0;color:#858b94;font-size:.6rem;font-weight:650;letter-spacing:.13em;text-transform:uppercase}
+.tool-list{display:flex;flex-wrap:wrap;gap:.55rem}
+.tool-groups .tool-list span{display:inline-flex;align-items:center;gap:.42rem;font-size:.7rem;transition:border-color .2s var(--ease),color .2s var(--ease),background .2s var(--ease)}
+.tool-groups .tool-list span svg{width:.82rem;height:.82rem;flex:none;color:#858b94;transition:color .2s var(--ease)}
+.tool-groups .tool-list span:hover{border-color:rgba(62,245,255,.38);color:#e3e6ea;background:rgba(62,245,255,.045)}
+.tool-groups .tool-list span:hover svg{color:var(--accent)}
+.gallery-section{padding-top:0;scroll-margin-top:22svh;scroll-snap-align:start;scroll-snap-stop:always}
+.portfolio-chapter-heading{display:block;min-height:0;padding:0 0 clamp(3rem,5vw,5rem)}
+.portfolio-chapter-heading>.editorial-heading{width:min(100%,940px)}
+.portfolio-chapter-heading .editorial-heading>.eyebrow{margin-bottom:.9rem}
+.portfolio-chapter-heading .editorial-heading h2{max-width:900px;margin:0;font-size:clamp(2.9rem,5.25vw,5.2rem);font-weight:400;line-height:.98;letter-spacing:-.018em;text-wrap:balance}
+.portfolio-chapter-heading .editorial-heading h2 em{font-size:1em;font-style:italic;font-weight:400;letter-spacing:-.008em}
+.portfolio-chapter-heading>p{max-width:64ch;margin:clamp(1.25rem,2vw,1.8rem) 0 0;color:#9298a1;background:none;font-size:.92rem;font-weight:400;line-height:1.62;letter-spacing:0;text-transform:none}
 .footer{padding:3rem 0 3.5rem}
 .footer-inner{justify-content:center;text-align:center}
 .footer-signature{flex-direction:column;gap:.7rem}
@@ -148,12 +163,16 @@ body{font-family:var(--font-body),"Helvetica Neue",Helvetica,Arial,"PingFang SC"
   .achievement-list article{grid-template-columns:58px 1fr;gap:.9rem}
   .tool-groups{grid-template-columns:1fr;margin-left:0;gap:1.5rem}
   .tool-groups article{padding-left:1rem}
+  .gallery-section{scroll-margin-top:14svh}
+  .portfolio-chapter-heading{padding-bottom:3rem}
+  .portfolio-chapter-heading .editorial-heading h2{font-size:clamp(2.35rem,10vw,3.8rem);line-height:1}
+  .portfolio-chapter-heading>p{font-size:.88rem;line-height:1.58}
 }
 
 @media(min-width:801px){html:has(.landing-experience){scroll-snap-type:y mandatory}}
 @media(max-width:800px){html:has(.landing-experience){scroll-snap-type:y proximity}.experience-chapter{padding-bottom:max(6.5rem,16svh);scroll-margin-top:14svh}}
-@media(max-width:520px){.experience-chapter{padding-bottom:max(5rem,15svh);scroll-margin-top:12svh}}
-@media(prefers-reduced-motion:reduce){html:has(.landing-experience){scroll-snap-type:none}.experience-chapter{scroll-margin-top:0;scroll-snap-align:none}}
+@media(max-width:520px){.experience-chapter{padding-bottom:max(5rem,15svh);scroll-margin-top:12svh}.gallery-section{scroll-margin-top:12svh}}
+@media(prefers-reduced-motion:reduce){html:has(.landing-experience){scroll-snap-type:none}.experience-chapter,.gallery-section{scroll-margin-top:0;scroll-snap-align:none}}
 
 html[data-locale="zh"] .editorial-heading h2{font-family:"Songti SC","STSong",serif;font-size:clamp(2.75rem,5vw,4.8rem);line-height:1.02;letter-spacing:-.02em}
 html[data-locale="zh"] .editorial-heading h2 em{font-family:"Songti SC","STSong",serif;font-style:normal;white-space:normal}

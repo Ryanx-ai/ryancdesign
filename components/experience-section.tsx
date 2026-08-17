@@ -1,8 +1,10 @@
 "use client";
 
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
-import { Boxes, Code2, PencilRuler } from "lucide-react";
+import { Bot, Boxes, Braces, Code2, Cpu, DraftingCompass, Image, PencilRuler, Sparkles, Video } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import type { IconType } from "react-icons";
+import { SiArduino, SiAutocad, SiBlender, SiClaude, SiCplusplus, SiFigma, SiFlask, SiGit, SiGithub, SiHtml5, SiJavascript, SiMiro, SiNextdotjs, SiObsstudio, SiPython, SiReact, SiRhinoceros, SiScratch, SiSharp, SiSketch, SiSqlite, SiSwift, SiTypescript, SiUnity, SiUnrealengine, SiVercel, SiWebflow } from "react-icons/si";
 import { achievements, education, toolGroups, work, type ExperienceItem, type ExperienceMetric } from "@/lib/experience";
 import { localize, type Locale } from "@/lib/i18n";
 import { EditorialHeading } from "./editorial-heading";
@@ -79,6 +81,19 @@ function TimelineItems({ items, locale }: { items: ExperienceItem[]; locale: Loc
 
 const toolIcons = [PencilRuler, Boxes, Code2];
 
+const brandIcons: Record<string, IconType> = {
+  Figma: SiFigma, Sketch: SiSketch, Rhino: SiRhinoceros, AutoCAD: SiAutocad, Blender: SiBlender,
+  Arduino: SiArduino, Unity: SiUnity, "Unreal Engine": SiUnrealengine, Miro: SiMiro, Webflow: SiWebflow, OBS: SiObsstudio, Scratch: SiScratch,
+  TypeScript: SiTypescript, JavaScript: SiJavascript, Python: SiPython, "C++": SiCplusplus, "C#": SiSharp, Swift: SiSwift,
+  "HTML / CSS": SiHtml5, React: SiReact, "Next.js": SiNextdotjs, Flask: SiFlask, Git: SiGit, GitHub: SiGithub, Vercel: SiVercel,
+  "SQL / SQLite": SiSqlite, Claude: SiClaude,
+};
+
+const fallbackIcons: Record<string, IconType> = {
+  Illustrator: DraftingCompass, Photoshop: Image, "After Effects": Sparkles, "Premiere Pro": Video, KeyShot: Sparkles, ZBrush: DraftingCompass,
+  "OpenAI API": Bot, Codex: Braces, "LLM Integration": Cpu, "Prompt Engineering": Sparkles,
+};
+
 export function ExperienceSection() {
   const section = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
@@ -94,6 +109,6 @@ export function ExperienceSection() {
       <section className="experience-chapter"><EditorialHeading eyebrow={text.careerLabel} before={text.careerBefore} emphasis={text.careerEmphasis} /><TimelineItems items={work} locale={locale} /></section>
       <section className="experience-chapter"><EditorialHeading eyebrow={text.achievementsLabel} before={text.achievementsBefore} emphasis={text.achievementsEmphasis} /><div className="achievement-list">{achievements.map((item) => <article key={`${item.year}-${item.title}`}><span>{item.year}</span><div><h3>{item.title}</h3><p>{localize(item.detail, locale)}</p><Metrics metrics={item.metrics} locale={locale} /></div></article>)}</div></section>
     </div>
-    <section className="experience-chapter toolkit"><EditorialHeading eyebrow={text.toolsLabel} before={text.toolsBefore} emphasis={text.toolsEmphasis} /><div className="tool-groups">{toolGroups.map((group, index) => { const Icon = toolIcons[index]; return <article key={group.name.en}><div className="tool-column-line" aria-hidden="true" /><h3><Icon size={17} aria-hidden="true" />{localize(group.name, locale)}</h3><div>{group.tools.map((tool) => <span key={tool}>{tool}</span>)}</div></article>; })}</div></section>
+    <section className="experience-chapter toolkit"><EditorialHeading eyebrow={text.toolsLabel} before={text.toolsBefore} emphasis={text.toolsEmphasis} /><div className="tool-groups">{toolGroups.map((group, index) => { const GroupIcon = toolIcons[index]; return <article key={group.name.en}><div className="tool-column-line" aria-hidden="true" /><header><h3><GroupIcon size={17} aria-hidden="true" />{localize(group.name, locale)}</h3>{group.descriptor ? <p>{localize(group.descriptor, locale)}</p> : null}</header><div className="tool-sections">{group.sections.map((toolSection) => <section key={toolSection.name?.en ?? group.name.en}>{toolSection.name ? <h4>{localize(toolSection.name, locale)}</h4> : null}<div className="tool-list">{toolSection.tools.map((tool) => { const ToolIcon = brandIcons[tool] ?? fallbackIcons[tool] ?? Code2; return <span key={tool}><ToolIcon aria-hidden="true" />{tool}</span>; })}</div></section>)}</div></article>; })}</div></section>
   </section>;
 }
