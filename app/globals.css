@@ -178,3 +178,46 @@ html[data-locale="zh"] .editorial-heading h2{font-family:"Songti SC","STSong",se
 html[data-locale="zh"] .editorial-heading h2 em{font-family:"Songti SC","STSong",serif;font-style:normal;white-space:normal}
 html[data-locale="zh"] .ryan-narrative h3{font-family:"Songti SC","STSong",serif}
 html[data-locale="zh"] .experience-copy h3,html[data-locale="zh"] .achievement-list h3{font-family:var(--font-body),"PingFang SC","Microsoft YaHei",sans-serif}
+
+/* Live projects and ShinySim case study */
+.live-projects-section{min-height:72svh;padding-bottom:clamp(7rem,12vw,12rem);scroll-margin-top:22svh;scroll-snap-align:start;scroll-snap-stop:always}
+.live-project-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.25rem,2vw,2rem)}
+.live-project-card:only-child{grid-column:2}
+.live-project-card{min-width:0}
+.live-project-media{position:relative;display:block;overflow:hidden;aspect-ratio:16/10;border:1px solid rgba(255,255,255,.11);border-radius:var(--r-md);background:#090a0c;transition:border-color .35s var(--ease),box-shadow .35s var(--ease)}
+.live-project-media img{object-fit:cover;object-position:center top;transition:filter .45s var(--ease),transform .65s var(--ease)}
+.live-project-card:hover .live-project-media,.live-project-card:focus-within .live-project-media{border-color:rgba(62,245,255,.4);box-shadow:0 16px 50px rgba(0,0,0,.38),0 0 24px rgba(62,245,255,.035)}
+.live-project-card:hover .live-project-media img,.live-project-card:focus-within .live-project-media img{filter:brightness(1.06);transform:scale(1.012)}
+.live-project-copy{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding-top:1.15rem}
+.live-project-card h2{margin:0;font-family:var(--font-display-serif),"Songti SC","STSong",serif;font-size:clamp(2.15rem,3.5vw,3rem);font-weight:400;line-height:.9;letter-spacing:-.018em}
+.live-project-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.65rem}
+.live-project-actions a{display:inline-flex;align-items:center;gap:.38rem;min-height:44px;color:#9fa5ae;font-size:.72rem;transition:color .25s var(--ease),transform .25s var(--ease)}
+.live-project-actions a:last-child{color:var(--accent)}
+.live-project-actions a:hover,.live-project-actions a:focus-visible{color:var(--accent);transform:translateY(-1px)}
+.shinysim-case{position:relative;padding-top:clamp(9rem,13vw,12rem)}
+.shinysim-opening{padding-bottom:clamp(4rem,8vw,7rem)}
+.shinysim-opening>.eyebrow{display:block;margin:clamp(3rem,6vw,5rem) 0 1.1rem;color:var(--accent);font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.shinysim-opening h1{max-width:1100px;margin:0;font-family:var(--font-display-serif),"Songti SC","STSong",serif;font-size:clamp(5rem,13vw,12rem);font-weight:400;line-height:.78;letter-spacing:-.035em}
+.shinysim-intro{display:grid;grid-template-columns:minmax(0,720px) auto;align-items:end;justify-content:space-between;gap:2rem;margin-top:clamp(2.5rem,5vw,4.5rem)}
+.shinysim-intro p{max-width:68ch;margin:0;color:#a4a9b1;font-size:clamp(1rem,1.4vw,1.15rem);line-height:1.7}
+.shinysim-intro .button,.shinysim-ending .button{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap}
+.shinysim-lead{margin-bottom:clamp(8rem,14vw,14rem)}
+.shinysim-lead>div{position:relative;overflow:hidden;aspect-ratio:36/25;border:1px solid var(--line);border-radius:var(--r-lg);background:#090a0c}
+.shinysim-lead img,.shinysim-evidence img{object-fit:cover}
+.shinysim-lead figcaption,.shinysim-evidence figcaption{max-width:72ch;margin-top:.85rem;color:#737983;font-size:.72rem;line-height:1.55}
+.shinysim-story{display:grid;gap:clamp(8rem,14vw,15rem)}
+.shinysim-phase{display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);align-items:center;gap:clamp(3rem,8vw,8rem)}
+.shinysim-phase.right .shinysim-phase-copy{grid-column:2;grid-row:1}.shinysim-phase.right>:last-child{grid-column:1;grid-row:1}
+.shinysim-phase.text-only{display:block;padding-inline:clamp(0rem,8vw,8rem)}
+.shinysim-phase.text-only .shinysim-phase-copy{max-width:880px;margin-inline:auto}
+.shinysim-phase.text-only.right .shinysim-phase-copy{grid-column:auto;grid-row:auto}
+.shinysim-phase-copy>span{color:var(--accent);font-size:.68rem;font-weight:700;letter-spacing:.14em}
+.shinysim-phase-copy h2{margin:.8rem 0 1.2rem;font-family:var(--font-display-serif),"Songti SC","STSong",serif;font-size:clamp(2.7rem,5.2vw,5rem);font-weight:400;line-height:.96;letter-spacing:-.018em}
+.shinysim-phase-copy p{max-width:62ch;margin:0;color:#969ca5;font-size:.94rem;line-height:1.68}
+.shinysim-evidence{margin:0}.shinysim-evidence>div{position:relative;overflow:hidden;aspect-ratio:16/11;border:1px solid var(--line);border-radius:var(--r-md);background:#090a0c}.shinysim-evidence img{object-position:top center}
+.shinysim-ending{padding-block:clamp(10rem,17vw,17rem);text-align:center}.shinysim-ending>.eyebrow{color:var(--accent);font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}.shinysim-ending h2{margin:1rem 0 2.5rem;font-family:var(--font-display-serif),serif;font-size:clamp(3.6rem,8vw,7rem);font-weight:400;line-height:.9;letter-spacing:-.025em}
+@media(max-width:900px){.live-project-list{grid-template-columns:repeat(2,minmax(0,1fr))}.live-project-card:only-child{grid-column:1/-1;width:calc((100% - clamp(1.25rem,2vw,2rem))/2);justify-self:center}}
+@media(max-width:800px){.live-projects-section{min-height:58svh;scroll-margin-top:14svh}.shinysim-intro,.shinysim-phase,.shinysim-phase.right{grid-template-columns:1fr}.shinysim-phase.right .shinysim-phase-copy,.shinysim-phase.right>:last-child{grid-column:1;grid-row:auto}.shinysim-phase.right .shinysim-phase-copy{grid-row:1}.shinysim-opening h1{font-size:clamp(4.8rem,22vw,8rem)}.shinysim-lead>div{aspect-ratio:4/3}.shinysim-evidence>div{aspect-ratio:4/3}}
+@media(max-width:600px){.live-project-list{grid-template-columns:1fr}.live-project-card:only-child{grid-column:auto;width:100%}.live-project-copy{align-items:flex-start}.live-project-actions{justify-content:flex-end}.live-project-card h2{font-size:2.25rem}}
+@media(max-width:520px){.live-projects-section{scroll-margin-top:12svh}.shinysim-case{padding-top:8rem}.shinysim-opening>.eyebrow{margin-top:2.5rem}.shinysim-intro{gap:1.5rem}.shinysim-intro .button{width:100%}.shinysim-story{gap:7rem}.shinysim-phase{gap:2rem}}
+@media(prefers-reduced-motion:reduce){.live-projects-section{scroll-margin-top:0;scroll-snap-align:none}.live-project-actions a:hover{transform:none}}

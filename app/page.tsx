@@ -4,6 +4,7 @@ import { ScrollStory } from "@/components/scroll-story";
 import { PortfolioHeading } from "@/components/portfolio-heading";
 import { ExperienceSection } from "@/components/experience-section";
 import { ContactSection } from "@/components/contact-section";
+import { LiveProjectsSection } from "@/components/live-projects-section";
 
 export default function Home() {
   const projects = getProjects();
@@ -11,6 +12,7 @@ export default function Home() {
     <ScrollStory />
     <ExperienceSection />
     <section className="gallery-section shell" id="portfolio"><PortfolioHeading /><ProjectGallery projects={projects} /></section>
+    <LiveProjectsSection />
     <ContactSection />
   </main>;
 }

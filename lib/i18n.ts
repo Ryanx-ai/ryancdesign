@@ -21,6 +21,15 @@ export const ui = {
     showAll: { en: "Show all", zh: "查看全部" },
     hideAll: { en: "Hide all", zh: "收起" },
   },
+  projects: {
+    eyebrow: { en: "Projects", zh: "项目" },
+    titleBefore: { en: "Things I’ve", zh: "我打造的" },
+    titleEmphasis: { en: "built", zh: "项目" },
+    description: {
+      en: "Live products shaped through design, development and deployment.",
+      zh: "从设计、开发到部署的线上产品。",
+    },
+  },
   contact: {
     heading: { en: "Let’s connect.", zh: "保持联系。" },
     email: { en: "Email", zh: "电邮" },
