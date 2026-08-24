@@ -23,8 +23,8 @@ export const ui = {
   },
   projects: {
     eyebrow: { en: "Projects", zh: "项目" },
-    titleBefore: { en: "Things I’ve", zh: "我打造的" },
-    titleEmphasis: { en: "built", zh: "项目" },
+    titleBefore: { en: "My personal", zh: "我的个人" },
+    titleEmphasis: { en: "sandbox.", zh: "实验场。" },
     description: {
       en: "Live products shaped through design, development and deployment.",
       zh: "从设计、开发到部署的线上产品。",

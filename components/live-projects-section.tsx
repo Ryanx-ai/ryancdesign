@@ -10,8 +10,8 @@ import { Reveal } from "./motion";
 import { useLanguage } from "./language-provider";
 
 const copy = {
-  en: { caseStudy: "Case Study", visitSite: "Visit Site" },
-  zh: { caseStudy: "案例研究", visitSite: "访问网站" },
+  en: { caseStudy: "Case Study", visitSite: "Visit Site", comingSoon: "Coming Soon" },
+  zh: { caseStudy: "案例研究", visitSite: "访问网站", comingSoon: "即将推出" },
 };
 
 export function LiveProjectsSection() {
@@ -25,15 +25,18 @@ export function LiveProjectsSection() {
       <p>{ui.projects.description[locale]}</p>
     </Reveal>
     <div className="live-project-list">{projects.map((project) => <article className="live-project-card" key={project.slug}>
-      <Link className="live-project-media" href={project.caseStudyUrl} aria-label={`${text.caseStudy}: ${project.name}`}>
-        <Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 680px) calc(100vw - 40px), 520px" />
-      </Link>
+      {project.status === "live" && project.caseStudyUrl ? <Link className={`live-project-media ${project.mediaFit}`} href={project.caseStudyUrl} aria-label={`${text.caseStudy}: ${project.name}`}>
+        <Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 900px) 50vw, 420px" />
+      </Link> : <div className={`live-project-media ${project.mediaFit}`}>
+        <Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 900px) 50vw, 420px" />
+      </div>}
       <div className="live-project-copy">
         <h2>{project.name}</h2>
-        <div className="live-project-actions">
-          <Link href={project.caseStudyUrl}>{text.caseStudy}<ArrowRight size={16} aria-hidden="true" /></Link>
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{text.visitSite}<ArrowUpRight size={16} aria-hidden="true" /></a>
-        </div>
+        <p>{project.description}</p>
+        {project.status === "live" && project.caseStudyUrl && project.liveUrl ? <div className="live-project-actions">
+          <Link href={project.caseStudyUrl}>{text.caseStudy}<ArrowRight size={15} aria-hidden="true" /></Link>
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{text.visitSite}<ArrowUpRight size={15} aria-hidden="true" /></a>
+        </div> : <span className="live-project-status">{text.comingSoon}</span>}
       </div>
     </article>)}</div>
   </section>;
