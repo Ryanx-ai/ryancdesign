@@ -23,7 +23,7 @@ export const liveProjects: LiveProject[] = [
     status: "live",
     visible: true,
     caseStudyUrl: "/projects/shinysim",
-    liveUrl: "https://shiny-simulator-6997a1geq-pangea6.vercel.app/",
+    liveUrl: "https://shiny-simulator.vercel.app/",
   },
   {
     slug: "luna-vault",

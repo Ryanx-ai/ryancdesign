@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
-const liveUrl = "https://shiny-simulator-6997a1geq-pangea6.vercel.app/";
+const liveUrl = "https://shiny-simulator.vercel.app/";
 
 export const metadata: Metadata = {
   title: "ShinySim",
