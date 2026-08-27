@@ -35,6 +35,16 @@ export const liveProjects: LiveProject[] = [
     status: "coming-soon",
     visible: true,
   },
+  {
+    slug: "tosker",
+    name: "Tosker",
+    description: "A shared digital room for the things we do together.",
+    image: "/projects/toskerlogo-full-white.svg",
+    imageAlt: "Tosker",
+    mediaFit: "contain",
+    status: "coming-soon",
+    visible: true,
+  },
 ];
 
 export function getVisibleLiveProjects() {
