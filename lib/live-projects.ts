@@ -4,7 +4,7 @@ export type LiveProject = {
   description: string;
   image: string;
   imageAlt: string;
-  mediaFit: "cover" | "contain";
+  mediaFit: "cover" | "contain" | "wordmark";
   status: "live" | "coming-soon";
   /** Only visible projects are included in public project surfaces and metadata. */
   visible: boolean;
@@ -17,9 +17,9 @@ export const liveProjects: LiveProject[] = [
     slug: "shinysim",
     name: "ShinySim",
     description: "Born from my love for Pokémon — an experiment in global API data, probability, and the RNG systems behind games.",
-    image: "/projects/shinysim/shinysim-logo.png",
+    image: "/projects/shinysim/shinysim-logo.svg",
     imageAlt: "ShinySim logo",
-    mediaFit: "contain",
+    mediaFit: "wordmark",
     status: "live",
     visible: true,
     caseStudyUrl: "/projects/shinysim",
