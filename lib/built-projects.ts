@@ -39,6 +39,5 @@ export const builtProjects: BuiltProject[] = [
     details: ["Identity · Brand system · Applications", "Helvetica Neue · Garamond"],
     sourceNote: "Preview uses authentic Kuro photography and an original brand-system wordmark.",
   },
-  { slug: "luna", title: "Luna", tags: ["DEV", "UX"], status: "coming-soon", descriptor: "Coming soon.", media: [] },
   { slug: "cheshire", title: "Cheshire", tags: ["DEV"], status: "coming-soon", descriptor: "Coming soon.", media: [] },
 ];

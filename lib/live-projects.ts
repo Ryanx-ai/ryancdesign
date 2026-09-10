@@ -26,16 +26,6 @@ export const liveProjects: LiveProject[] = [
     liveUrl: "https://shiny-simulator.vercel.app/",
   },
   {
-    slug: "luna-vault",
-    name: "Luna Vault",
-    description: "A living workspace for professional brand handover, governance, and confident asset sharing.",
-    image: "/projects/luna-vault-full.png",
-    imageAlt: "Luna Vault",
-    mediaFit: "contain",
-    status: "coming-soon",
-    visible: true,
-  },
-  {
     slug: "tosker",
     name: "Tosker",
     description: "A shared digital room for the things we do together.",
