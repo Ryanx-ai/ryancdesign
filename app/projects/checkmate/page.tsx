@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, LockKeyhole } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { liveProjects } from "@/lib/live-projects";
 
 const root = "/projects/checkmate";
 export const metadata: Metadata = {
   title: "Pokémon Checkmate: Galaxy",
   description: "Translating Pokémon team-building into a readable browser auto-battler: game systems, interaction design, evolution, economy and an authoritative multiplayer prototype.",
   alternates: { canonical: root },
-  openGraph: { title: "Pokémon Checkmate: Galaxy — RyanC", url: root, description: "A game systems and development case study. V1 prototype; not publicly playable.", images: [`${root}/checkmate-v1-hero.jpg`] },
+  openGraph: { title: "Pokémon Checkmate: Galaxy — RyanC", url: root, description: "A game systems and development case study for a publicly playable V1 browser auto-battler.", images: [`${root}/checkmate-v1-hero.jpg`] },
   twitter: { card: "summary_large_image", images: [`${root}/checkmate-v1-hero.jpg`] },
 };
 
-function PlayUnavailable() {
-  return <div className="checkmate-unavailable"><button className="button" type="button" disabled aria-label="Visit Site — Coming Soon"><LockKeyhole size={15} aria-hidden="true" /> Visit Site</button><span>Coming Soon · Not public yet</span></div>;
+function VisitSite() {
+  return <div className="checkmate-unavailable"><a className="button" href={liveProjects.find((project) => project.slug === "checkmate")?.liveUrl} target="_blank" rel="noopener noreferrer">Visit Site <ArrowUpRight size={15} aria-hidden="true" /></a></div>;
 }
 function Gameplay({file,alt,caption,hero=false}:{file:string;alt:string;caption:string;hero?:boolean}) {
   return <figure className={hero ? "shinysim-lead shell checkmate-gameplay" : "shinysim-evidence checkmate-gameplay"}>
@@ -37,7 +38,7 @@ export default function CheckmateCaseStudy() {
       <Link className="back" href="/#projects"><ArrowLeft size={15} aria-hidden="true" /> Projects</Link>
       <span className="eyebrow">Game systems · Interaction · Development</span>
       <h1>Pokémon Checkmate:<br/><em>Galaxy</em></h1>
-      <div className="shinysim-intro"><p>What if Pokémon team-building became an auto-battler? A competitive browser game concept inspired by Pokémon, TFT and Magic Chess—built around drafting, positioning and the decisions that happen before a battle begins.</p><PlayUnavailable /></div>
+      <div className="shinysim-intro"><p>What if Pokémon team-building became an auto-battler? A competitive browser game concept inspired by Pokémon, TFT and Magic Chess—built around drafting, positioning and the decisions that happen before a battle begins.</p><VisitSite /></div>
       <dl className="checkmate-metadata"><div><dt>Role</dt><dd>Product Designer / Game Systems Designer / Developer</dd></div><div><dt>Focus</dt><dd>Game Systems / UIUX / Frontend / Competitive Multiplayer</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Status</dt><dd>V1 Prototype / In Development</dd></div></dl>
     </header>
 
@@ -65,6 +66,6 @@ export default function CheckmateCaseStudy() {
 
     <div className="checkmate-final-shot"><Gameplay file="checkmate-evolution.jpg" alt="Final Checkmate V1 interface after a ninth-copy merge into three-star Dragapult" caption="A real shop command turns the ninth family copy into 3★ Dragapult. The interface reflects the evolved form, updated stats and preserved formation." /></div>
 
-    <section className="shinysim-ending shell checkmate-ending"><span className="eyebrow">Next / Beyond V1</span><h2>Room for another season.</h2><p>Public online hosting, authenticated ranked matchmaking and a roguelike campaign come next. The generic trait system leaves room for regional forms, Paradox Pokémon, Ultra Beasts and stranger Wormhole encounters. Those are future directions; current Legendaries are available only through the practice lab flag, with campaign unlocks still to come.</p><PlayUnavailable/><p className="checkmate-legal">Pokémon Checkmate is an unofficial, non-commercial fan project created for design and development exploration. Pokémon and related properties belong to their respective owners.</p><Link className="back" href="/#projects"><ArrowLeft size={15} aria-hidden="true"/> Back to Projects</Link></section>
+    <section className="shinysim-ending shell checkmate-ending"><span className="eyebrow">Next / Beyond V1</span><h2>Room for another season.</h2><p>Authenticated ranked matchmaking and a roguelike campaign come next. The generic trait system leaves room for regional forms, Paradox Pokémon, Ultra Beasts and stranger Wormhole encounters. Those are future directions; current Legendaries are available only through the practice lab flag, with campaign unlocks still to come.</p><VisitSite/><p className="checkmate-legal">Pokémon Checkmate is an unofficial, non-commercial fan project created for design and development exploration. Pokémon and related properties belong to their respective owners.</p><Link className="back" href="/#projects"><ArrowLeft size={15} aria-hidden="true"/> Back to Projects</Link></section>
   </main>;
 }
