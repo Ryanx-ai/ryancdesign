@@ -5,7 +5,8 @@ export type LiveProject = {
   image: string;
   imageAlt: string;
   mediaFit: "cover" | "contain" | "wordmark";
-  status: "live" | "coming-soon";
+  status: "live" | "prototype" | "coming-soon";
+  category?: string;
   /** Only visible projects are included in public project surfaces and metadata. */
   visible: boolean;
   caseStudyUrl?: string;
@@ -24,6 +25,18 @@ export const liveProjects: LiveProject[] = [
     visible: true,
     caseStudyUrl: "/projects/shinysim",
     liveUrl: "https://shiny-simulator.vercel.app/",
+  },
+  {
+    slug: "checkmate",
+    name: "Pokémon Checkmate: Galaxy",
+    description: "Translating Pokémon team-building into a competitive browser auto-battler through systems design, interaction and a playable multiplayer prototype.",
+    image: "/projects/checkmate/checkmate-v1-hero.jpg",
+    imageAlt: "Pokémon Checkmate Galaxy V1: cosmic board, team synergies, Pokémon details and Wormhole Market",
+    mediaFit: "cover",
+    status: "prototype",
+    category: "Game Systems / UIUX / Development",
+    visible: true,
+    caseStudyUrl: "/projects/checkmate",
   },
   {
     slug: "tosker",

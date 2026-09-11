@@ -226,3 +226,62 @@ html[data-locale="zh"] .experience-copy h3,html[data-locale="zh"] .achievement-l
 @media(max-width:600px){.live-project-list{grid-template-columns:1fr}.live-project-card:only-child{grid-column:auto;width:100%}}
 @media(max-width:520px){.live-projects-section{scroll-margin-top:12svh}.shinysim-case{padding-top:8rem}.shinysim-opening>.eyebrow{margin-top:2.5rem}.shinysim-intro{gap:1.5rem}.shinysim-intro .button{width:100%}.shinysim-story{gap:7rem}.shinysim-phase{gap:2rem}}
 @media(prefers-reduced-motion:reduce){.live-projects-section{scroll-margin-top:0;scroll-snap-align:none}.live-project-actions a:hover{transform:none}}
+
+/* Checkmate uses the existing project editorial system; identity stays in the game imagery. */
+.live-project-category{color:#8c859f;font-size:.62rem;letter-spacing:.025em}
+.live-project-actions .project-visit-disabled{display:inline-flex;align-items:center;gap:.45rem;min-height:36px;padding:0 .72rem;border:1px solid rgba(255,255,255,.08);border-radius:var(--r-sm);background:rgba(255,255,255,.02);color:#747982;font:inherit;font-size:.7rem;cursor:not-allowed}
+.project-visit-disabled span{font-size:.57rem;color:#646a73}
+.checkmate-case{--accent:#b8acfa}
+.checkmate-case .shinysim-opening h1{font-size:clamp(3.8rem,8.6vw,8rem);line-height:.88}
+.checkmate-case .shinysim-opening h1 em{font-weight:400}
+.checkmate-metadata{display:grid;grid-template-columns:1.3fr 1.3fr .4fr .8fr;gap:1.5rem;margin:3.5rem 0 0;padding-top:1.5rem;border-top:1px solid var(--line)}
+.checkmate-metadata dt{color:#747b86;font-size:.65rem;margin-bottom:.7rem}
+.checkmate-metadata dd{margin:0;color:#b7bac2;font-size:.75rem;line-height:1.65}
+.checkmate-unavailable{display:flex;flex-direction:column;align-items:flex-start;gap:.65rem;flex-shrink:0}
+.checkmate-unavailable .button:disabled{opacity:1;background:#ffffff05;border-color:#ffffff12;color:#747a85;cursor:not-allowed;box-shadow:none;transform:none}
+.checkmate-unavailable>span{font-size:.65rem;color:#6e747e}
+.checkmate-case .checkmate-gameplay{margin-inline:auto}
+.checkmate-gameplay .checkmate-pan{display:block;overflow-x:auto;aspect-ratio:auto!important;max-width:100%;height:auto;background:#080d1c;border:1px solid var(--line);border-radius:var(--r-lg);scrollbar-width:thin;scrollbar-color:#70618d #0c1321}
+.checkmate-gameplay .checkmate-canvas{position:relative;width:100%;min-width:960px}
+.checkmate-gameplay img{display:block;width:100%;height:auto;object-fit:contain}
+.checkmate-gameplay figcaption{max-width:78ch;color:#7d838d;font-size:.72rem;line-height:1.6;margin-top:1rem}
+.checkmate-pan-hint{display:none;margin-top:.5rem;color:#a699ce}
+.checkmate-case .shinysim-phase-copy p.checkmate-following{margin-top:1.1rem}
+.checkmate-case .shinysim-story{gap:clamp(5rem,9vw,10rem)}
+.checkmate-case .shinysim-lead{margin-bottom:clamp(5rem,9vw,10rem)}
+.checkmate-loop{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1.5rem;padding:0;margin:3rem 0 2rem;list-style:none}
+.checkmate-loop li{position:relative;padding-top:1rem;border-top:1px solid #b8acfa45}
+.checkmate-loop li>span{font-size:.6rem;color:#8e83b4}
+.checkmate-loop h3{font-size:.88rem;font-weight:600;margin:.9rem 0 .7rem}
+.checkmate-loop p{font-size:.73rem;line-height:1.6;color:#858d99;margin:0}
+.checkmate-loop li>svg{position:absolute;top:1rem;right:0;color:#74658e}
+.checkmate-supporting{max-width:78ch;font-size:.87rem;line-height:1.75;color:#9097a3;margin:1.5rem auto 0}
+.checkmate-evolution{max-width:820px;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin:3rem auto 2rem;text-align:center}
+.checkmate-evolution>div{position:relative}
+.checkmate-evolution img{display:block;image-rendering:pixelated;object-fit:contain;width:120px;height:120px;margin:auto}
+.checkmate-evolution span{display:block;color:#cfb88c;font-size:.85rem;margin:.5rem 0}
+.checkmate-evolution h3{font-size:1rem;font-weight:500;margin:.6rem 0}
+.checkmate-evolution p{font-size:.7rem;color:#898f9c;margin:0}
+.evolution-arrow{position:absolute;right:-1.6rem;top:60px;color:#9c8eb9}
+.checkmate-detail-figure{margin:0;display:grid;justify-items:center;gap:1rem}
+.checkmate-detail-figure img{display:block;width:min(100%,300px);height:auto;border:1px solid #b8acfa25;border-radius:var(--r-md)}
+.checkmate-detail-figure figcaption{max-width:38ch;font-size:.7rem;line-height:1.6;color:#7b838f}
+.checkmate-trainer-notes{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:880px;margin:2.5rem auto 0}
+.checkmate-trainer-notes>div{padding-top:1rem;border-top:1px solid #b8acfa30}
+.checkmate-trainer-notes h3{font-size:.88rem;font-weight:500}
+.checkmate-trainer-notes p{font-size:.82rem;line-height:1.7;color:#89929e;margin:.7rem 0 0}
+.checkmate-process>div{aspect-ratio:1.08!important}
+.checkmate-process img{object-fit:contain!important;background:#080d1c}
+.checkmate-combat-crop>div{aspect-ratio:1.45!important}
+.checkmate-architecture{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1.1rem;margin:2.5rem 0;font-size:.76rem;color:#b3a7ce}
+.checkmate-architecture span{border-bottom:1px solid #b8acfa38;padding-bottom:.7rem}
+.checkmate-architecture>svg{color:#73668b}
+.checkmate-result ul{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2rem;list-style:none;padding:0;margin:2.5rem 0 0}
+.checkmate-result li{display:flex;align-items:center;gap:.7rem;color:#a4adb8;font-size:.82rem;line-height:1.6}
+.checkmate-result li>svg{flex-shrink:0;color:#b8acfa}
+.checkmate-final-shot{max-width:1480px;width:calc(100% - 40px);margin:clamp(5rem,9vw,10rem) auto 0}
+.checkmate-ending>p{max-width:72ch;margin:0 auto 2.5rem;color:#949ca8;font-size:.9rem;line-height:1.8}
+.checkmate-ending .checkmate-unavailable{align-items:center;margin:0 auto 3rem}
+.checkmate-ending>p.checkmate-legal{max-width:78ch;color:#686f7a;font-size:.68rem;line-height:1.8;margin-bottom:2rem}
+@media(max-width:960px){.checkmate-pan-hint{display:block}.checkmate-loop{grid-template-columns:repeat(3,1fr);gap:1.8rem}.checkmate-metadata{grid-template-columns:1fr 1fr}.checkmate-case .shinysim-phase{gap:3rem}}
+@media(max-width:600px){.checkmate-case .shinysim-opening h1{font-size:clamp(3.5rem,13.5vw,5rem);line-height:.95}.checkmate-metadata{gap:1.5rem 1rem;margin-top:2.5rem}.checkmate-metadata dd{font-size:.68rem}.checkmate-loop{grid-template-columns:1fr 1fr}.checkmate-evolution{gap:1rem;margin-top:2rem}.checkmate-evolution img{width:88px;height:88px}.checkmate-evolution h3{font-size:.77rem}.checkmate-evolution p{font-size:.62rem}.evolution-arrow{width:15px;right:-.95rem;top:44px}.checkmate-trainer-notes{grid-template-columns:1fr;gap:1.6rem}.checkmate-result ul{grid-template-columns:1fr}.checkmate-architecture{gap:.7rem;font-size:.67rem}.checkmate-case .shinysim-phase-copy h2{font-size:clamp(2.5rem,10vw,3.7rem)}.checkmate-unavailable{align-items:stretch}.checkmate-unavailable>span{text-align:center}.checkmate-gameplay .checkmate-canvas{min-width:960px}}

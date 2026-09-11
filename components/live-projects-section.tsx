@@ -25,17 +25,18 @@ export function LiveProjectsSection() {
       <p>{ui.projects.description[locale]}</p>
     </Reveal>
     <div className="live-project-list">{projects.map((project) => <article className="live-project-card" key={project.slug}>
-      {project.status === "live" && project.caseStudyUrl ? <Link className={`live-project-media ${project.mediaFit}`} href={project.caseStudyUrl} aria-label={`${text.caseStudy}: ${project.name}`}>
+      {project.caseStudyUrl ? <Link className={`live-project-media ${project.mediaFit}`} href={project.caseStudyUrl} aria-label={`${text.caseStudy}: ${project.name}`}>
         <Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 900px) 50vw, 420px" />
       </Link> : <div className={`live-project-media ${project.mediaFit}`}>
         <Image src={project.image} alt={project.imageAlt} fill sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 900px) 50vw, 420px" />
       </div>}
       <div className="live-project-copy">
+        {project.category ? <span className="live-project-category">{project.category}</span> : null}
         <h2>{project.name}</h2>
         <p>{project.description}</p>
-        {project.status === "live" && project.caseStudyUrl && project.liveUrl ? <div className="live-project-actions">
+        {project.caseStudyUrl ? <div className="live-project-actions">
           <Link href={project.caseStudyUrl}>{text.caseStudy}<ArrowRight size={15} aria-hidden="true" /></Link>
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{text.visitSite}<ArrowUpRight size={15} aria-hidden="true" /></a>
+          {project.liveUrl ? <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{text.visitSite}<ArrowUpRight size={15} aria-hidden="true" /></a> : <button type="button" disabled className="project-visit-disabled" aria-label={`${text.visitSite} — ${text.comingSoon}`}>{text.visitSite}<span>{text.comingSoon}</span></button>}
         </div> : <span className="live-project-status">{text.comingSoon}</span>}
       </div>
     </article>)}</div>
