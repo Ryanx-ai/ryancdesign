@@ -36,7 +36,7 @@ export function LiveProjectsSection() {
         <p>{project.description}</p>
         {project.caseStudyUrl ? <div className="live-project-actions">
           <Link href={project.caseStudyUrl}>{text.caseStudy}<ArrowRight size={15} aria-hidden="true" /></Link>
-          {project.liveUrl ? <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{text.visitSite}<ArrowUpRight size={15} aria-hidden="true" /></a> : <button type="button" disabled className="project-visit-disabled" aria-label={`${text.visitSite} — ${text.comingSoon}`}>{text.visitSite}<span>{text.comingSoon}</span></button>}
+          {project.liveUrl ? <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{text.visitSite}<ArrowUpRight size={15} aria-hidden="true" /></a> : project.status === "coming-soon" ? <span className="live-project-status">{text.comingSoon}</span> : <button type="button" disabled className="project-visit-disabled" aria-label={`${text.visitSite} — ${text.comingSoon}`}>{text.visitSite}<span>{text.comingSoon}</span></button>}
         </div> : <span className="live-project-status">{text.comingSoon}</span>}
       </div>
     </article>)}</div>

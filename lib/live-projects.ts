@@ -40,6 +40,18 @@ export const liveProjects: LiveProject[] = [
     liveUrl: "https://pkmn-checkmate-galaxy.vercel.app",
   },
   {
+    slug: "pangea",
+    name: "Pangea",
+    description: "A living world simulation where digital lives grow, learn and adapt. You shape the environment. They shape what comes next.",
+    image: "/projects/pangea/pangea-card.svg",
+    imageAlt: "The original Pangea leaf and wordmark, rendered in dark green pixels on light green",
+    mediaFit: "cover",
+    status: "coming-soon",
+    category: "Artificial Life / Simulation / Speculative Design",
+    visible: true,
+    caseStudyUrl: "/projects/pangea",
+  },
+  {
     slug: "tosker",
     name: "Tosker",
     description: "A shared digital room for the things we do together.",

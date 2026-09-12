@@ -199,6 +199,7 @@ html[data-locale="zh"] .experience-copy h3,html[data-locale="zh"] .achievement-l
 .live-project-actions a:last-child{border-color:rgba(62,245,255,.28);color:var(--accent)}
 .live-project-actions a:hover,.live-project-actions a:focus-visible{border-color:rgba(62,245,255,.58);background:rgba(62,245,255,.04);color:var(--accent);transform:translateY(-1px)}
 .live-project-status{width:max-content;margin-top:.2rem;color:#747b84;font-size:.68rem;font-weight:650;letter-spacing:.12em;text-transform:uppercase}
+.live-project-actions>.live-project-status{align-self:center;margin:0;padding:.4rem .2rem;color:#c1dda3}
 .shinysim-case{position:relative;padding-top:clamp(9rem,13vw,12rem)}
 .shinysim-opening{padding-bottom:clamp(4rem,8vw,7rem)}
 .shinysim-opening>.eyebrow{display:block;margin:clamp(3rem,6vw,5rem) 0 1.1rem;color:var(--accent);font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
