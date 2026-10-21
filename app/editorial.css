@@ -19,3 +19,4 @@ html:has(.resume-page),html:has(.design-case){scroll-snap-type:none;scroll-paddi
 @media(prefers-reduced-motion:reduce){.design-study *{transition:none!important}.gallery-item:hover .designed-name{background:rgba(0,0,0,.48)}}
 
 .masonry>div{break-inside:avoid}.masonry>div:nth-child(3n) .designed-name{font-family:var(--font-body);font-size:clamp(1.8rem,3vw,3.4rem);font-weight:650;letter-spacing:-.04em}
+.luna-guide h3{overflow-wrap:anywhere}

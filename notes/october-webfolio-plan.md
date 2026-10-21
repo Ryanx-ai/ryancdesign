@@ -33,3 +33,9 @@ Responsive/interface/accessibility checks, asset and route audit, lint, typechec
 - Desktop, 768px tablet and 390px mobile studies inspected. Entry-path controls, habitat views, palette/name continuity and curriculum selection/search work. Mobile navigation, résumé anchors, gallery next/previous, Escape/focus restoration and show/hide checked.
 - No missing content assets, public sketch files, Harpie references in application code, absolute local paths or detected secret patterns. Private environment, dependencies, build output and local archives are ignored.
 - Existing Auth.js/Jose Edge compression API build warnings remain; no dependency changes were made. New case-study prose is English; the existing language switch remains available for shared site navigation and résumé content.
+
+## Resumed regression pass
+
+The founder clarified that Pufflet, Phings, Luna and Eureka are the only new case studies; existing work remains. Harpie is excluded. Pangea is an existing study, not a newly authored case.
+
+Tested long/empty Luna names, Eureka no-results and empty-selection recovery, Phings view/habitat independence, and Pufflet Enter/Space keyboard activation. Fixed one issue: long unbroken names could clip in Luna's Guidelines panel; they now wrap without changing the regular layout. Editorial parser tests accept only the four implemented studies and reject Harpie, empty image blocks, external media URLs and unknown block types.
