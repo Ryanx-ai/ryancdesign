@@ -94,7 +94,7 @@ const fallbackIcons: Record<string, IconType> = {
   "OpenAI API": Bot, Codex: Braces, "LLM Integration": Cpu, "Prompt Engineering": Sparkles,
 };
 
-export function ExperienceSection() {
+export function ExperienceSection({ careerFirst = false }: { careerFirst?: boolean }) {
   const section = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const { locale } = useLanguage();
@@ -105,10 +105,9 @@ export function ExperienceSection() {
   return <section className="experience-section shell" id="experience" ref={section}>
     <div className="experience-life">
       <div className="experience-line" aria-hidden="true"><motion.i style={{ scaleY: reduced ? 1 : lineProgress }} /></div>
-      <section className="experience-chapter"><EditorialHeading eyebrow={text.educationLabel} before={text.educationBefore} emphasis={text.educationEmphasis} /><TimelineItems items={education} locale={locale} /></section>
-      <section className="experience-chapter"><EditorialHeading eyebrow={text.careerLabel} before={text.careerBefore} emphasis={text.careerEmphasis} /><TimelineItems items={work} locale={locale} /></section>
+      {(careerFirst ? ["career", "education"] : ["education", "career"]).map(kind=><section id={kind} className="experience-chapter" key={kind}><EditorialHeading eyebrow={kind === "career" ? text.careerLabel : text.educationLabel} before={kind === "career" ? text.careerBefore : text.educationBefore} emphasis={kind === "career" ? text.careerEmphasis : text.educationEmphasis}/><TimelineItems items={kind === "career" ? work : education} locale={locale}/></section>)}
       <section className="experience-chapter"><EditorialHeading eyebrow={text.achievementsLabel} before={text.achievementsBefore} emphasis={text.achievementsEmphasis} /><div className="achievement-list">{achievements.map((item) => <article key={`${item.year}-${item.title}`}><span>{item.year}</span><div><h3>{item.title}</h3><p>{localize(item.detail, locale)}</p><Metrics metrics={item.metrics} locale={locale} /></div></article>)}</div></section>
     </div>
-    <section className="experience-chapter toolkit"><EditorialHeading eyebrow={text.toolsLabel} before={text.toolsBefore} emphasis={text.toolsEmphasis} /><div className="tool-groups">{toolGroups.map((group, index) => { const GroupIcon = toolIcons[index]; return <article key={group.name.en}><div className="tool-column-line" aria-hidden="true" /><header><h3><GroupIcon size={17} aria-hidden="true" />{localize(group.name, locale)}</h3>{group.descriptor ? <p>{localize(group.descriptor, locale)}</p> : null}</header><div className="tool-sections">{group.sections.map((toolSection) => <section key={toolSection.name?.en ?? group.name.en}>{toolSection.name ? <h4>{localize(toolSection.name, locale)}</h4> : null}<div className="tool-list">{toolSection.tools.map((tool) => { const ToolIcon = brandIcons[tool] ?? fallbackIcons[tool] ?? Code2; return <span key={tool}><ToolIcon aria-hidden="true" />{tool}</span>; })}</div></section>)}</div></article>; })}</div></section>
+    <section id="skills" className="experience-chapter toolkit"><EditorialHeading eyebrow={text.toolsLabel} before={text.toolsBefore} emphasis={text.toolsEmphasis} /><div className="tool-groups">{toolGroups.map((group, index) => { const GroupIcon = toolIcons[index]; return <article key={group.name.en}><div className="tool-column-line" aria-hidden="true" /><header><h3><GroupIcon size={17} aria-hidden="true" />{localize(group.name, locale)}</h3>{group.descriptor ? <p>{localize(group.descriptor, locale)}</p> : null}</header><div className="tool-sections">{group.sections.map((toolSection) => <section key={toolSection.name?.en ?? group.name.en}>{toolSection.name ? <h4>{localize(toolSection.name, locale)}</h4> : null}<div className="tool-list">{toolSection.tools.map((tool) => { const ToolIcon = brandIcons[tool] ?? fallbackIcons[tool] ?? Code2; return <span key={tool}><ToolIcon aria-hidden="true" />{tool}</span>; })}</div></section>)}</div></article>; })}</div></section>
   </section>;
 }

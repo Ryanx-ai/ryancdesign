@@ -11,6 +11,7 @@ import "@fontsource-variable/eb-garamond/wght.css";
 import "@fontsource-variable/eb-garamond/wght-italic.css";
 import "@fontsource-variable/inter/wght.css";
 import "./globals.css";
+import "./editorial.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ryanc.design"),

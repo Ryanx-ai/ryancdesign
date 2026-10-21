@@ -11,11 +11,14 @@ import { useLanguage } from "./language-provider";
 
 const ratios = ["cinematic", "portrait", "square", "tall", "landscape", "portrait"];
 
-export function ProjectGallery({ projects }: { projects: Project[] }) {
+type GalleryProject = Pick<Project,"slug"|"title"|"summary"|"year"|"role"|"category"|"featured"|"cover"|"thumbnail"|"gallery">;
+export function ProjectGallery({ projects }: { projects: GalleryProject[] }) {
   const { locale } = useLanguage();
   const [selected, setSelected] = useState<number | null>(null);
   const [expanded, setExpanded] = useState(false);
   const archive = useRef<HTMLDivElement>(null);
+  const dialog = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLElement | null>(null);
   const reduced = useReducedMotion();
   const close = useCallback(() => setSelected(null), []);
   const step = useCallback((direction: number) => setSelected((current) => current === null ? 0 : (current + direction + projects.length) % projects.length), [projects.length]);
@@ -27,21 +30,37 @@ export function ProjectGallery({ projects }: { projects: Project[] }) {
       if (event.key === "Escape") close();
       if (event.key === "ArrowRight") step(1);
       if (event.key === "ArrowLeft") step(-1);
+      if (event.key === "Tab") {
+        const controls = dialog.current?.querySelectorAll<HTMLElement>('a[href],button:not([disabled])');
+        if (!controls?.length) return;
+        const first=controls[0],last=controls[controls.length-1];
+        if (event.shiftKey && document.activeElement===first) { event.preventDefault(); last.focus(); }
+        if (!event.shiftKey && document.activeElement===last) { event.preventDefault(); first.focus(); }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
   }, [close, selected, step]);
 
+  const isOpen = selected !== null;
+  useEffect(() => {
+    if (!isOpen) return;
+    trigger.current=document.activeElement as HTMLElement;
+    const frame=requestAnimationFrame(()=>dialog.current?.querySelector<HTMLButtonElement>(".overlay-toolbar button")?.focus());
+    return ()=>{ cancelAnimationFrame(frame); trigger.current?.focus(); };
+  }, [isOpen]);
+
   const project = selected === null ? null : projects[selected];
   return <>
     <div ref={archive} className={`portfolio-archive ${expanded ? "expanded" : "curated"}`}><div className="masonry" role="list">
-      {projects.map((item, index) => <motion.button className={`gallery-item ${ratios[index % ratios.length]} ${item.featured ? "featured" : ""}`} key={item.slug} onClick={() => setSelected(index)} layoutId={reduced ? undefined : `project-${item.slug}`} whileHover={reduced ? undefined : { y: -3 }} transition={{ type: "spring", stiffness: 260, damping: 28 }} role="listitem" aria-label={`Open ${item.title}`}>
-        <Image src={item.cover} alt={`${item.title} project cover`} fill sizes="(max-width: 620px) 100vw, (max-width: 1000px) 50vw, 33vw" />
-        <span className="gallery-caption"><strong>{item.title}</strong><small>{item.category} · {item.year}</small></span>
-      </motion.button>)}
+      {projects.map((item, index) => <div role="listitem" key={item.slug}><motion.button className={`gallery-item ${ratios[index % ratios.length]} ${item.thumbnail ? "has-thumbnail" : ""} ${item.featured ? "featured" : ""}`} onClick={() => setSelected(index)} layoutId={reduced ? undefined : `project-${item.slug}`} whileHover={reduced ? undefined : { y: -3 }} transition={{ type: "spring", stiffness: 260, damping: 28 }} aria-label={`Open ${item.title}`}>
+        <Image src={item.thumbnail || item.cover} alt="" fill sizes="(max-width: 620px) 100vw, (max-width: 1000px) 50vw, 33vw" />
+        {!item.thumbnail && <span className="designed-name" aria-hidden="true">{item.title}</span>}
+        <span className="gallery-caption"><strong>{item.title}</strong><small>{item.category}{item.year ? ` · ${item.year}` : ""}</small></span>
+      </motion.button></div>)}
     </div><div className="archive-smoke" aria-hidden="true" /></div><button className="archive-toggle" type="button" aria-expanded={expanded} onClick={() => { setExpanded((value) => !value); if (expanded) requestAnimationFrame(() => archive.current?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "end" })); }}>{expanded ? ui.portfolio.hideAll[locale] : ui.portfolio.showAll[locale]}</button>
     <AnimatePresence>
-      {project && <motion.div className="project-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .25 }} role="dialog" aria-modal="true" aria-label={`${project.title} project details`}>
+      {project && <motion.div ref={dialog} className="project-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .25 }} role="dialog" aria-modal="true" aria-label={`${project.title} project details`}>
         <button className="overlay-backdrop" onClick={close} aria-label="Close project" />
         <motion.article className="overlay-canvas" layoutId={reduced ? undefined : `project-${project.slug}`} transition={{ type: "spring", stiffness: 220, damping: 30 }}>
           <header className="overlay-toolbar"><span>{String(selected! + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span><button onClick={close} aria-label="Close project"><X /></button></header>

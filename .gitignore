@@ -5,3 +5,4 @@ node_modules/
 *.log
 *.tsbuildinfo
 .DS_Store
+.local-archive/

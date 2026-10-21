@@ -5,6 +5,7 @@ export const localeStorageKey = "rcd-locale";
 
 export const ui = {
   navigation: {
+    resume: { en: "Resume", zh: "履历" },
     portfolio: { en: "Portfolio", zh: "作品集" },
     contact: { en: "Contact", zh: "联系" },
     projects: { en: "Projects", zh: "项目" },
