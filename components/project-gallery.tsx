@@ -55,7 +55,6 @@ export function ProjectGallery({ projects }: { projects: GalleryProject[] }) {
     <div ref={archive} className={`portfolio-archive ${expanded ? "expanded" : "curated"}`}><div className="masonry" role="list">
       {projects.map((item, index) => <div role="listitem" key={item.slug}><motion.button className={`gallery-item ${ratios[index % ratios.length]} ${item.thumbnail ? "has-thumbnail" : ""} ${item.featured ? "featured" : ""}`} onClick={() => setSelected(index)} layoutId={reduced ? undefined : `project-${item.slug}`} whileHover={reduced ? undefined : { y: -3 }} transition={{ type: "spring", stiffness: 260, damping: 28 }} aria-label={`Open ${item.title}`}>
         <Image src={item.thumbnail || item.cover} alt="" fill sizes="(max-width: 620px) 100vw, (max-width: 1000px) 50vw, 33vw" />
-        {!item.thumbnail && <span className="designed-name" aria-hidden="true">{item.title}</span>}
         <span className="gallery-caption"><strong>{item.title}</strong><small>{item.category}{item.year ? ` · ${item.year}` : ""}</small></span>
       </motion.button></div>)}
     </div><div className="archive-smoke" aria-hidden="true" /></div><button className="archive-toggle" type="button" aria-expanded={expanded} onClick={() => { setExpanded((value) => !value); if (expanded) requestAnimationFrame(() => archive.current?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "end" })); }}>{expanded ? ui.portfolio.hideAll[locale] : ui.portfolio.showAll[locale]}</button>

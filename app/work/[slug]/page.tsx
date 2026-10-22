@@ -5,7 +5,6 @@ import { getProject, getProjects } from "@/lib/content";
 import { projectEditorial } from "@/lib/project-editorial";
 import { CaseStudyMedia } from "@/components/case-study-media";
 import { DesignCaseStudy } from "@/components/design-case-study";
-import PangeaCaseStudy from "@/components/pangea-case-study";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return getProjects().map((project) => ({ slug: project.slug })); }
@@ -15,7 +14,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params; const project = getProject(slug); if (!project) notFound();
   const projects = getProjects(); const index = projects.findIndex((item) => item.slug === slug);
   const previous = projects[(index - 1 + projects.length) % projects.length]; const next = projects[(index + 1) % projects.length];
-  if (slug === "pangea") return <PangeaCaseStudy />;
   if (project.sections.length) return <DesignCaseStudy project={project} previous={previous} next={next}/>;
   const beats = projectEditorial[slug];
   if (!beats || beats.length !== project.gallery.length) throw new Error(`Editorial sequence does not match gallery for ${slug}`);
