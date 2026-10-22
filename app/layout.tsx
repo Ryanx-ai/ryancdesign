@@ -13,6 +13,7 @@ import "@fontsource-variable/inter/wght.css";
 import "./globals.css";
 import "./editorial.css";
 import "./founder-patch.css";
+import "./walkthrough-04.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ryanc.design"),

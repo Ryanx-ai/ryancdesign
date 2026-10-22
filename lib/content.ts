@@ -30,6 +30,7 @@ export type Project = {
   /** Optional editorial order, independent of the project's historical date. */
   portfolioOrder: number;
   sections: CaseBlock[];
+  software: string[];
 };
 
 const root = path.join(process.cwd(), "content/projects");
@@ -62,6 +63,8 @@ export function getProjects({ includeUnpublished = false, collection = "portfoli
       thumbnail: String(data.thumbnail || ""),
       portfolioOrder: typeof data.portfolioOrder === "number" ? data.portfolioOrder : Number.MAX_SAFE_INTEGER,
       sections: parseCaseBlocks(data.sections),
+      // Founder-supplied design-tool credits; individual records can override.
+      software: Array.isArray(data.software) ? data.software.map(String) : ["Figma", "Adobe Illustrator"],
     };
     return project;
   });

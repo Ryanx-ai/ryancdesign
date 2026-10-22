@@ -1,50 +1,56 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import { Check, FileText, Layers, LayoutDashboard, Pencil, Plus, Search, X } from "lucide-react";
+import { ArrowRight, Check, FileText, Layers, Library, Plus, Search, X } from "lucide-react";
+import { catalogueCourses } from "@/lib/eureka-catalogue";
 
-type Module = { id: number; name: string; track: string; detail: string; morsels: number; status: "Draft" | "Active" };
-const samples: Module[] = [
-  { id:1, name:"Paper structures", track:"Engineering", detail:"Fold, test and compare.", morsels:3, status:"Active" },
-  { id:2, name:"Light and shadow", track:"Science", detail:"Observe a changing outline.", morsels:4, status:"Active" },
-  { id:3, name:"Patterns in nature", track:"Math", detail:"Find a rule, then test it.", morsels:3, status:"Draft" },
-  { id:4, name:"Design a small shelter", track:"Design", detail:"Build around a constraint.", morsels:5, status:"Active" },
-];
-const screens = [{ name:"Dashboard", icon:LayoutDashboard }, { name:"Module library", icon:Layers }, { name:"Programme builder", icon:FileText }] as const;
-type Screen = typeof screens[number]["name"] | "Edit module";
+const screens = [{name:"Course catalogue",icon:Library},{name:"Module builder",icon:Layers},{name:"Proposal draft",icon:FileText}] as const;
+type Screen = typeof screens[number]["name"];
+type Selection = {courseId:string; activity:string};
 
-/** New UI concept from documented workflows; no source database or private lessons. */
 export function EurekaStudy() {
-  const [screen,setScreen] = useState<Screen>("Dashboard");
-  const [modules,setModules] = useState(samples);
+  const [screen,setScreen] = useState<Screen>("Course catalogue");
+  const [courseId,setCourseId] = useState("junior-coders");
   const [query,setQuery] = useState("");
-  const [selected,setSelected] = useState<number[]>([1]);
-  const [draft,setDraft] = useState<Module>(samples[0]);
-  const [error,setError] = useState("");
+  const [pillar,setPillar] = useState("All");
+  const [selected,setSelected] = useState<Selection[]>([]);
+  const [proposal,setProposal] = useState({name:"A first step into coding",audience:"School enrichment programme",format:"Bootcamp"});
   const [notice,setNotice] = useState("");
-  const [programme,setProgramme] = useState({name:"Learning through making",track:"Design",duration:"Half day"});
-  const shown = modules.filter(m=>`${m.name} ${m.track}`.toLowerCase().includes(query.toLowerCase()));
-  const edit=(module:Module)=>{setDraft({...module});setScreen("Edit module");setError("");setNotice("");};
-  const toggle=(id:number)=>setSelected(current=>current.includes(id)?current.filter(value=>value!==id):[...current,id]);
-  return <div className="eureka-app"><header><strong>eureka<span>Curriculum workspace</span></strong><span className="study-small">New UI concept · sample content</span></header>
+  const course = catalogueCourses.find(item=>item.id===courseId) ?? catalogueCourses[2];
+  const visible = catalogueCourses.filter(item=>(pillar==="All"||item.pillar===pillar)&&`${item.title} ${item.description}`.toLowerCase().includes(query.toLowerCase()));
+  const chosenCourses = catalogueCourses.filter(item=>selected.some(selection=>selection.courseId===item.id));
+  const incompatible = chosenCourses.filter(item=>!item.formats.includes(proposal.format));
+  function toggle(activity:string) {
+    const exists=selected.some(item=>item.courseId===course.id&&item.activity===activity);
+    setSelected(current=>exists?current.filter(item=>!(item.courseId===course.id&&item.activity===activity)):[...current,{courseId:course.id,activity}]);
+    setNotice(`${activity} ${exists?"removed from":"added to"} the proposal.`);
+  }
+  function openCourse(id:string) {setCourseId(id);setScreen("Module builder");setNotice("");}
+  return <div className="eureka-app catalogue-app">
+    <header><Image src="/content/projects/eureka/cms-lockup.svg" width={327} height={85} alt="Eureka"/><span>Curriculum Management System<br/><small>Catalogue-to-proposal interface study</small></span></header>
     <div className="eureka-workspace eureka-workspace-v3">
-      <nav className="eureka-rail" aria-label="Eureka concept screens">{screens.map(({name,icon:Icon})=><button key={name} aria-pressed={screen===name} onClick={()=>{setScreen(name);setNotice("");setError("");}}><Icon size={17}/>{name}</button>)}</nav>
+      <nav className="eureka-rail" aria-label="Eureka concept screens">{screens.map(({name,icon:Icon})=><button key={name} aria-pressed={screen===name} onClick={()=>{setScreen(name);setNotice("");}}><Icon size={17}/>{name}</button>)}</nav>
       <div className="eureka-library">
-        <div className="eureka-title"><div><span className="study-kicker">Curriculum</span><h3>{screen}</h3></div>{screen!=="Edit module" && <button className="eureka-action" onClick={()=>edit({id:Math.max(...modules.map(m=>m.id))+1,name:"",track:"Science",detail:"",morsels:0,status:"Draft"})}><Plus size={15}/> New module</button>}</div>
-        {screen==="Dashboard" ? <><p className="eureka-intro">Find teaching material and assemble a programme.</p><div className="eureka-overview"><div><strong>{modules.length}</strong><span>Sample modules</span></div><div><strong>{modules.filter(m=>m.status==="Draft").length}</strong><span>Drafts</span></div><div><strong>{selected.length}</strong><span>Selected modules</span></div></div><h4>Module overview</h4><div className="eureka-list">{modules.map(m=><article key={m.id}><div><strong>{m.name}</strong><small>{m.track} · {m.status} · {m.morsels} morsels</small></div><button aria-label={`Edit ${m.name}`} onClick={()=>edit(m)}><Pencil size={15}/></button></article>)}</div></>
-        : screen==="Edit module" ? <form className="eureka-editor" onSubmit={event=>{event.preventDefault();if(!draft.name.trim()){setError("Enter a module name.");return;}setModules(current=>current.some(m=>m.id===draft.id)?current.map(m=>m.id===draft.id?{...draft,name:draft.name.trim()}:m):[...current,{...draft,name:draft.name.trim()}]);setScreen("Module library");setQuery("");setNotice("Module saved in this demo. Reloading resets all changes.");}}>
-          <label>Module name<input value={draft.name} maxLength={80} aria-invalid={Boolean(error)} aria-describedby={error?"eureka-name-error":undefined} onChange={e=>setDraft({...draft,name:e.target.value})}/></label>
-          <label>Track<select value={draft.track} onChange={e=>setDraft({...draft,track:e.target.value})}>{["Science","Tech","Engineering","Design","Math"].map(track=><option key={track}>{track}</option>)}</select></label>
-          <label>Description<textarea value={draft.detail} maxLength={300} rows={3} onChange={e=>setDraft({...draft,detail:e.target.value})}/></label>
-          <label>Status<select value={draft.status} onChange={e=>setDraft({...draft,status:e.target.value==="Active"?"Active":"Draft"})}><option>Draft</option><option>Active</option></select></label>
-          <p>{draft.morsels} sample morsels. Activity editing is outside this interface study.</p>
-          {error && <p id="eureka-name-error" role="alert">{error}</p>}
-          <div><button className="eureka-action" type="submit">Save sample module</button> <button type="button" onClick={()=>{setScreen("Module library");setError("");}}>Cancel</button></div>
-        </form>
-        : <>{screen==="Programme builder" && <div className="eureka-programme-form"><h4>Programme info</h4><label>Programme name<input value={programme.name} maxLength={80} onChange={e=>setProgramme({...programme,name:e.target.value})}/></label><div><label>Track<select value={programme.track} onChange={e=>setProgramme({...programme,track:e.target.value})}>{["Science","Tech","Engineering","Design","Math"].map(track=><option key={track}>{track}</option>)}</select></label><label>Duration<input value={programme.duration} maxLength={40} onChange={e=>setProgramme({...programme,duration:e.target.value})}/></label></div><p>Sample programme details · changes stay in this page.</p></div>}<label className="study-search"><Search size={17}/><span className="sr-only">Search sample modules</span><input placeholder="Find a module" value={query} onChange={e=>setQuery(e.target.value)}/></label><div className="eureka-departments">{["Science","Tech","Engineering","Design","Math"].filter(track=>shown.some(m=>m.track===track)).map(track=><section key={track} className="eureka-department"><h4>{track}</h4><div className="eureka-modules">{shown.filter(m=>m.track===track).map(m=><article key={m.id}><span>{m.track} · {m.status}</span><h4>{m.name}</h4><p>{m.detail}</p><footer><small>{m.morsels} morsels</small><div><button aria-label={`Edit ${m.name}`} onClick={()=>edit(m)}><Pencil size={16}/></button><button aria-label={`${selected.includes(m.id)?"Remove":"Add"} ${m.name}`} aria-pressed={selected.includes(m.id)} onClick={()=>toggle(m.id)}>{selected.includes(m.id)?<Check size={17}/>:<Plus size={17}/>}</button></div></footer></article>)}</div></section>)}</div>{!shown.length && <p role="status">No modules match. Clear the search or try another track.</p>}</>}
-        {notice && <p role="status" className="eureka-save-note">{notice}</p>}
+        <div className="catalogue-heading"><span className="study-kicker">ESA · 2026–2027</span><h3>{screen}</h3><p>{screen==="Course catalogue"?"Find a course, review its activities, then assemble a proposal.":screen==="Module builder"?"Turn course activities into a reusable proposal outline.":"Review the outline before curriculum and commercial approval."}</p></div>
+        {screen==="Course catalogue" ? <>
+          <label className="study-search"><Search size={17}/><span className="sr-only">Search courses</span><input placeholder="Search courses" value={query} onChange={event=>setQuery(event.target.value)}/></label>
+          <div className="catalogue-filters" role="group" aria-label="Course pillar">{["All","Science","Technology","Engineering","Math","Design"].map(name=><button key={name} aria-pressed={pillar===name} onClick={()=>setPillar(name)}>{name}</button>)}</div>
+          <div className="catalogue-courses">{visible.map(item=><article key={item.id}><span>{item.pillar} · Ages {item.ages}</span><h4>{item.title}</h4><p>{item.description}</p><small>{item.formats.join(" / ")}</small><button onClick={()=>openCourse(item.id)}>Build modules <ArrowRight size={15}/><span className="sr-only"> for {item.title}</span></button></article>)}</div>
+          {!visible.length && <div className="catalogue-empty"><p>No courses match these filters.</p><button onClick={()=>{setQuery("");setPillar("All");}}>Clear filters</button></div>}
+        </> : screen==="Module builder" ? <>
+          <label className="catalogue-course-select">Source course<select value={courseId} onChange={event=>{setCourseId(event.target.value);setNotice("");}}>{catalogueCourses.map(item=><option key={item.id} value={item.id}>{item.title}</option>)}</select></label>
+          <div className="catalogue-course-detail"><span>{course.pillar} · Ages {course.ages}</span><h4>{course.title}</h4><p>{course.description}</p><small>{course.formats.join(" / ")} · Catalogue p. {course.page}</small></div>
+          <h4 className="catalogue-module-label">Activities → proposal modules</h4><p className="catalogue-note">Suggested grouping from the catalogue’s learning activities. Select the parts relevant to the brief.</p>
+          <div className="catalogue-module-list">{course.activities.map((activity,index)=>{const added=selected.some(item=>item.courseId===course.id&&item.activity===activity);return <article key={activity}><span>{String(index+1).padStart(2,"0")}</span><strong>{activity}</strong><button aria-pressed={added} aria-label={`${added?"Remove":"Add"} ${activity}`} onClick={()=>toggle(activity)}>{added?<Check size={18}/>:<Plus size={18}/>}</button></article>;})}</div>
+        </> : <>
+          <div className="eureka-programme-form"><label>Proposal title<input maxLength={90} value={proposal.name} onChange={event=>setProposal({...proposal,name:event.target.value})}/></label><label>Audience / brief<input maxLength={100} value={proposal.audience} onChange={event=>setProposal({...proposal,audience:event.target.value})}/></label><label>Delivery format<select value={proposal.format} onChange={event=>setProposal({...proposal,format:event.target.value})}>{["Workshop","Bootcamp","Regular classes","GoGlobal"].map(format=><option key={format}>{format}</option>)}</select></label></div>
+          {selected.length ? <div className="catalogue-proposal"><span>Proposal outline · draft</span><h4>{proposal.name.trim()||"Untitled proposal"}</h4><p>{proposal.audience.trim()||"Audience to be confirmed"} · {proposal.format}</p>{chosenCourses.map(item=><section key={item.id}><h5>{item.title}</h5><small>Ages {item.ages} · Source: catalogue p. {item.page}</small><ol>{selected.filter(selection=>selection.courseId===item.id).map(selection=><li key={selection.activity}>{selection.activity}</li>)}</ol></section>)}<p className="catalogue-note">Duration, sequencing, pricing and delivery feasibility need team review. This is an outline, not a client-ready quotation.</p></div>:<div className="catalogue-empty"><h4>Start with a course.</h4><p>Select at least one activity to build the proposal outline.</p><button className="eureka-action" onClick={()=>setScreen("Course catalogue")}>Browse courses</button></div>}
+          {incompatible.length>0 && <p className="catalogue-warning" role="status">Check delivery: {incompatible.map(item=>item.title).join(", ")} {incompatible.length===1?"does":"do"} not list {proposal.format} in the catalogue. Choose another format or confirm an adaptation with the curriculum team.</p>}
+        </>}
+        <p className="catalogue-feedback" role="status">{notice}</p>
       </div>
-      <aside className="eureka-program"><span className="study-kicker">Your programme</span><h4>{programme.name.trim() || "Untitled programme"}</h4><p>{programme.track} · {programme.duration || "Duration not set"} · sample</p><ol aria-live="polite">{selected.map(id=>{const entry=modules.find(m=>m.id===id);return entry?<li key={id}><span>{entry.name}</span><button aria-label={`Remove ${entry.name} from programme`} onClick={()=>toggle(id)}><X size={14}/></button></li>:null;})}</ol>{!selected.length && <p>Add a module from the library to begin.</p>}<div className="eureka-guidance"><Check size={16}/><span>Keep your selection while browsing or editing.</span></div></aside>
-    </div><footer className="eureka-demo-note">Illustrative lessons only. No private curriculum or learner data. Changes are local and reset on reload.</footer>
+      <aside className="eureka-program"><span className="study-kicker">Proposal workspace</span><h4>{selected.length} {selected.length===1?"module":"modules"} selected</h4><p>From {chosenCourses.length} {chosenCourses.length===1?"course":"courses"}</p>{selected.length?<ol>{selected.map(item=><li key={`${item.courseId}-${item.activity}`}><span>{item.activity}</span><button aria-label={`Remove ${item.activity} from proposal`} onClick={()=>{setSelected(current=>current.filter(selection=>selection!==item));setNotice(`${item.activity} removed from the proposal.`);}}><X size={16}/></button></li>)}</ol>:<p>Pick activities from a course. Your selection stays here as you browse.</p>}<button className="eureka-action" onClick={()=>setScreen("Proposal draft")}>Review draft <ArrowRight size={15}/></button><small className="catalogue-note">No client data or live sales system is connected.</small></aside>
+    </div><footer className="eureka-demo-note">Selected courses from the founder-supplied ESA working catalogue. Module grouping and proposal UI are new design studies. Changes reset on reload.</footer>
   </div>;
 }
