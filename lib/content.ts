@@ -27,6 +27,8 @@ export type Project = {
   projectStatus: "concept" | "prototype" | "shipped" | "archived";
   credits: string;
   thumbnail: string;
+  /** Optional editorial order, independent of the project's historical date. */
+  portfolioOrder: number;
   sections: CaseBlock[];
 };
 
@@ -58,11 +60,12 @@ export function getProjects({ includeUnpublished = false, collection = "portfoli
       projectStatus: data.projectStatus === "prototype" || data.projectStatus === "shipped" || data.projectStatus === "archived" ? data.projectStatus : "concept",
       credits: String(data.credits || ""),
       thumbnail: String(data.thumbnail || ""),
+      portfolioOrder: typeof data.portfolioOrder === "number" ? data.portfolioOrder : Number.MAX_SAFE_INTEGER,
       sections: parseCaseBlocks(data.sections),
     };
     return project;
   });
-  return projects.filter((project) => (includeUnpublished || project.status === "published") && (collection === "all" || project.collection === collection)).sort((a, b) => (b.designDate || b.year).localeCompare(a.designDate || a.year));
+  return projects.filter((project) => (includeUnpublished || project.status === "published") && (collection === "all" || project.collection === collection)).sort((a, b) => a.portfolioOrder - b.portfolioOrder || (b.designDate || b.year).localeCompare(a.designDate || a.year));
 }
 
 export function getLocalizedProject(project: Project, locale: Locale): Project {

@@ -9,8 +9,6 @@ import type { Project } from "@/lib/content";
 import { ui } from "@/lib/i18n";
 import { useLanguage } from "./language-provider";
 
-const ratios = ["cinematic", "portrait", "square", "tall", "landscape", "portrait"];
-
 type GalleryProject = Pick<Project,"slug"|"title"|"summary"|"year"|"role"|"category"|"featured"|"cover"|"thumbnail"|"gallery">;
 export function ProjectGallery({ projects }: { projects: GalleryProject[] }) {
   const { locale } = useLanguage();
@@ -53,8 +51,8 @@ export function ProjectGallery({ projects }: { projects: GalleryProject[] }) {
   const project = selected === null ? null : projects[selected];
   return <>
     <div ref={archive} className={`portfolio-archive ${expanded ? "expanded" : "curated"}`}><div className="masonry" role="list">
-      {projects.map((item, index) => <div role="listitem" key={item.slug}><motion.button className={`gallery-item ${ratios[index % ratios.length]} ${item.thumbnail ? "has-thumbnail" : ""} ${item.featured ? "featured" : ""}`} onClick={() => setSelected(index)} layoutId={reduced ? undefined : `project-${item.slug}`} whileHover={reduced ? undefined : { y: -3 }} transition={{ type: "spring", stiffness: 260, damping: 28 }} aria-label={`Open ${item.title}`}>
-        <Image src={item.thumbnail || item.cover} alt="" fill sizes="(max-width: 620px) 100vw, (max-width: 1000px) 50vw, 33vw" />
+      {projects.map((item, index) => <div role="listitem" key={item.slug}><motion.button className={`gallery-item ${item.thumbnail ? "has-thumbnail" : ""} ${item.featured ? "featured" : ""}`} onClick={() => setSelected(index)} layoutId={reduced ? undefined : `project-${item.slug}`} whileHover={reduced ? undefined : { y: -3 }} transition={{ type: "spring", stiffness: 260, damping: 28 }} aria-label={`Open ${item.title}`}>
+        <Image src={item.thumbnail || item.cover} alt="" fill sizes="(max-width: 520px) 100vw, (max-width: 1100px) 50vw, 25vw" />
         <span className="gallery-caption"><strong>{item.title}</strong><small>{item.category}{item.year ? ` · ${item.year}` : ""}</small></span>
       </motion.button></div>)}
     </div><div className="archive-smoke" aria-hidden="true" /></div><button className="archive-toggle" type="button" aria-expanded={expanded} onClick={() => { setExpanded((value) => !value); if (expanded) requestAnimationFrame(() => archive.current?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "end" })); }}>{expanded ? ui.portfolio.hideAll[locale] : ui.portfolio.showAll[locale]}</button>
@@ -64,7 +62,7 @@ export function ProjectGallery({ projects }: { projects: GalleryProject[] }) {
         <motion.article className="overlay-canvas" layoutId={reduced ? undefined : `project-${project.slug}`} transition={{ type: "spring", stiffness: 220, damping: 30 }}>
           <header className="overlay-toolbar"><span>{String(selected! + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span><button onClick={close} aria-label="Close project"><X /></button></header>
           <div className="overlay-hero"><Image src={project.cover} alt={`${project.title} expanded view`} fill priority sizes="90vw" /></div>
-          <div className="overlay-copy"><div><span className="eyebrow">{project.category} · {project.year}</span><h2>{project.title}</h2></div><div><p>{project.summary}</p><p className="overlay-role">{project.role}</p><Link href={`/work/${project.slug}`} className="button">Open case study <ArrowUpRight size={15} /></Link></div></div>
+          <div className="overlay-copy"><div><span className="eyebrow">{project.category}{project.year ? ` · ${project.year}` : ""}</span><h2>{project.title}</h2></div><div><p>{project.summary}</p><p className="overlay-role">{project.role}</p><Link href={`/work/${project.slug}`} className="button">Open case study <ArrowUpRight size={15} /></Link></div></div>
           {project.gallery.length > 0 && <div className="overlay-gallery">{project.gallery.slice(0, 3).map((src, imageIndex) => <figure key={src}><Image src={src} alt={`${project.title} detail ${imageIndex + 1}`} fill sizes="45vw" /></figure>)}</div>}
           <nav className="overlay-nav" aria-label="Browse projects"><button onClick={() => step(-1)}><ArrowLeft size={17} /> Previous</button><button onClick={() => step(1)}>Next <ArrowRight size={17} /></button></nav>
         </motion.article>

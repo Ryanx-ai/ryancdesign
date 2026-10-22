@@ -1,39 +1,44 @@
 ---
 title: "Eureka CMS"
-summary: "A curriculum workspace organised around reusable modules and smaller learning morsels, with programme assembly kept visible as content is selected."
+summary: "A curriculum workspace for finding reusable teaching modules and assembling programmes."
 year: ""
 designDate: ""
-dateEvidence: "The source documents a v0.1 module-builder refocus and subsequent usability passes. An original design start date is not established; this interface study was authored in October 2026."
+dateEvidence: "The source records a module-builder refocus and usability revisions. An original design start date is not established. This interface study was authored in October 2026."
 publishDate: "2026-10-21"
-role: "Content architecture · CMS UI/UX · Interface study"
+portfolioOrder: 4
+role: "Information architecture · Content workflows · CMS UI/UX"
 category: "Content system design"
 collection: "portfolio"
 projectStatus: "concept"
 status: "published"
-cover: "/content/projects/eureka/cover.png"
-thumbnail: "/content/projects/eureka/cover.png"
+cover: "/content/projects/eureka/source-cover.png"
+thumbnail: "/content/projects/eureka/source-cover.svg"
 gallery: []
-credits: "The supplied Eureka CMS README and development log describe an internal Flask curriculum CMS for TGC / Eureka STEM Academy. This newly authored UI study references those documented flows, using invented sample lesson titles clearly marked as illustrative. It is not a production screenshot, a client endorsement or evidence of measured adoption. No internal database, learner data or private curriculum files are published."
+credits: "Based on Eureka CMS v0.1.5 documentation, Flask routes, data models, workflow templates and the original stylesheet, inspected read-only. The white, black and orange palette comes from that source. The cover and interfaces are newly authored presentations, not original screenshots. Lesson names are illustrative. No internal database, private curriculum or learner data is published."
 sections:
   - type: text
-    title: "Design around the unit people reuse."
-    text: "The source records a shift from a generic hierarchy builder to a module-first workspace. That is the useful product decision: a teammate assembling a programme should be able to find a teaching module and understand its smaller morsels without navigating an abstract organisational tree first."
+    title: "The Idea"
+    text: "Eureka CMS was intended to help organise teaching content and assemble programmes from reusable material. The project notes describe a shift from a general hierarchy builder to a module-first workspace."
   - type: parts
-    title: "Programme → module → morsel."
+    title: "Content Structure"
+    text: "I used the documented programme, module and morsel relationship to organise this interface study."
     items:
-      - { title: "Programme", text: "The assembled learning experience: a selection of modules with delivery context such as track, dates and market." }
-      - { title: "Module", text: "A reusable teaching unit with its own topic, status, ownership and supporting resources." }
-      - { title: "Morsel", text: "A smaller activity within the module, where practical details and resource links can live." }
+      - { title: "Programme", text: "A selection of modules assembled for a learning experience." }
+      - { title: "Module", text: "A reusable teaching unit with a track, status and supporting resources." }
+      - { title: "Morsel", text: "A smaller activity within a module." }
   - type: mockup
     study: eureka
-    title: "Browse without losing the programme."
-    text: "A module library and a persistent selection panel support the same task. Search narrows the available material; selected modules remain visible. Try adding and removing the illustrative modules below. On mobile the selection follows the library in normal page flow, avoiding nested scrolling and miniature desktop panels."
-  - type: text
-    title: "Make responsibility visible, without more clutter."
-    text: "The documented product includes module ownership, track labels, status and programme history. Those details support different moments: finding material, understanding who maintains it and reviewing a past build. The design approach is to reveal them where they help a decision, rather than give every field equal weight on the dashboard."
+    title: "Application Design"
+    text: "The source groups modules by department and separates programme details from module selection. I kept those decisions in this study, alongside the original white, black and orange palette. Explore the dashboard, library, module editor and programme builder using illustrative lessons."
+  - type: parts
+    title: "Workflow Decisions"
+    items:
+      - { title: "Find a module", text: "Search by name or track. Keep status and activity count beside each result." }
+      - { title: "Edit in context", text: "Label each field and offer a clear save or cancel action. Changes appear in both the library and the selected programme." }
+      - { title: "Build a programme", text: "Add and remove modules without losing the selection. On mobile, the programme follows the library in normal page flow." }
   - type: reflection
-    title: "The structure should disappear into the work."
-    text: "A successful curriculum tool makes reuse easier than rebuilding from scratch. This study tests the browsing and assembly relationship; it does not replace the source CMS or prove a productivity gain. Validation should follow a real programme-building task, including duplicate content, incomplete resources and changes after a programme has been scheduled."
+    title: "What This Study Clarifies"
+    text: "The useful design question is how to make finding, editing and reusing material feel connected. Keeping the selected programme visible helps explain that relationship. This study does not prove a productivity gain; the next step is to test a real programme-building task with the people using the CMS."
 ---
 
-A source-informed curriculum interface study with illustrative content.
+A new curriculum UI study based on documented Eureka CMS workflows.

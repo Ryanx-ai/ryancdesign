@@ -1,11 +1,12 @@
 ---
 title: "Luna"
-summary: "A source-led Luna Vault interface study: organise a brand’s identity, wrap a reviewed collection and share a specific version without losing its context."
+summary: "A brand management system concept for keeping identities, assets and guidelines together."
 year: "2026"
 designDate: "2026-08"
-dateEvidence: "Luna Vault source checkpoint afe3150 is dated 1 August 2026. This refined interface showcase was authored in October 2026."
+dateEvidence: "Luna Vault checkpoint afe3150 is dated 1 August 2026. This interface study was authored in October 2026."
 publishDate: "2026-10-21"
-role: "Brand governance · Product UI/UX · Interface refinement"
+portfolioOrder: 3
+role: "Brand management · Product UI/UX · Interface refinement"
 category: "Brand system & SaaS UI"
 collection: "portfolio"
 projectStatus: "prototype"
@@ -13,41 +14,43 @@ status: "published"
 cover: "/content/projects/luna/cover.png"
 thumbnail: "/content/projects/luna/cover.png"
 gallery: []
-credits: "Based on Ryan’s Luna Vault repository, inspected read-only at checkpoint afe3150. The source defines brand hierarchy, identity workspaces, wrapped collection versions, publications and a timeline. Its current experience uses session-local data; durable storage, production authentication and enforced access controls are not implemented. The interface below is a newly authored, source-led presentation with local sample state, not a live connection to Luna Vault. The original portfolio cover is preserved."
+credits: "Based on Ryan’s Luna Vault source at checkpoint afe3150, inspected without modifying it. This new presentation uses local sample state. It is not connected to a live service. Durable storage, production authentication and enforced access controls are not implemented."
 sections:
   - type: text
-    title: "The brand exists. Now keep it usable."
-    text: "Luna Vault begins after identity design. Its job is to keep logos, colour, typography and guidance connected as people use and hand over the brand. The source product is a governance workspace, not a logo generator. That distinction changes the interface: organise the source of truth, then make each handoff explicit."
+    title: "The Idea"
+    text: "Brand assets, guidelines and decisions can become scattered across files and platforms. I wanted a simpler way to maintain that information and make it clear which version someone should use."
+  - type: text
+    title: "The Concept"
+    text: "Luna is a brand management system. It brings logos, colours, typography and guidance into one workspace. A reviewed collection captures a version of that identity for sharing, without changing earlier versions."
+  - type: image
+    title: "Brand Identity"
+    text: "The original Luna Vault lockup carries the identity into the application. I kept the workspace dark and restrained so the brands being managed can remain distinct."
+    images:
+      - src: "/content/projects/luna/vault-lockup.png"
+        alt: "Original Luna Vault white lockup"
+        caption: "Original asset from the Luna Vault repository."
   - type: mockup
     study: luna
-    title: "From a living identity to a deliberate handoff."
-    text: "Explore Brands, the Identity workspace, Collections, an owner Preview and the Timeline. In Identity, review the logo, colour and typography tabs, then wrap a collection. The new snapshot appears beside earlier versions. Preview a version and try the local publication state. This flow follows the source’s Brand → Wrap → Collection → Share model; the layout and hierarchy are refined for this case study."
+    title: "Application Design"
+    text: "Explore the brand library, identity, collections, preview and history. Review the identity, wrap a collection, then preview that version. These interactions follow the source product’s Brand → Wrap → Collection → Share workflow."
   - type: parts
-    title: "Three things that should not be confused."
+    title: "Brand Library"
+    text: "I kept the editable brand, its reviewed versions and its publication state separate. That makes it easier to understand what is being changed and what has already been shared."
     items:
-      - { title: "The brand", text: "A living source of identity decisions. Parent and sub-brand relationships keep the family understandable without flattening everything into folders." }
-      - { title: "The collection version", text: "A reviewed snapshot for a handoff. Wrapping another version does not rewrite the one already given to someone else." }
-      - { title: "The publication", text: "A reference to one selected version. Removing availability should not erase the collection’s history." }
+      - { title: "Brand identity", text: "Logos, colours, type and guidance, with parent and sub-brand relationships." }
+      - { title: "Collection", text: "A reviewed snapshot. Creating another version leaves earlier versions unchanged." }
+      - { title: "Publication", text: "A reference to one selected version. Removing it does not delete the collection history." }
   - type: palette
-    title: "A quiet tool around expressive identities."
-    text: "The source’s Moonlight Black surfaces keep the application distinct from the brand being managed. Violet marks selection and actions. Logo previews, identity colours and guidance retain their own space rather than competing with dashboard decoration."
+    title: "Interface Colours"
+    text: "Dark surfaces frame the identity materials. Violet highlights selection and actions."
     items:
       - { title: "Canvas", text: "#0B0B0C" }
-      - { title: "Raised surface", text: "#151517" }
-      - { title: "Selection", text: "#A78BFA" }
-      - { title: "Foreground", text: "#F1F1F2" }
-  - type: parts
-    title: "Refine the workflow, not the product’s purpose."
-    items:
-      - { title: "Context before controls", text: "The brand family appears before asset-level actions. Identity and owner preview remain contextual screens rather than unrelated top-level products." }
-      - { title: "Review before wrap", text: "A small confirmation makes the snapshot boundary explicit. The user can see what will be included and that earlier versions remain unchanged." }
-      - { title: "Readable on smaller screens", text: "The review navigation becomes a compact horizontal group. Identity material and version actions stack without shrinking their tap targets." }
-  - type: text
-    title: "What is implemented, and what is proposed."
-    text: "The repository contains the brand hierarchy, identity materials, collection-version model, publication references and timeline interactions. They are backed by session-local state, not durable storage or production authentication. This study refines the presentation and simplifies fixtures to make that model legible. Packages and advanced tooling are not presented as part of the active MVP. No changes were made to the Luna Vault application."
+      - { title: "Surface", text: "#151517" }
+      - { title: "Accent", text: "#A78BFA" }
+      - { title: "Text", text: "#F1F1F2" }
   - type: reflection
-    title: "Confidence comes from knowing which version."
-    text: "The important handoff question is not only ‘where is the logo?’ It is ‘which identity was reviewed, and what exactly did we share?’ Luna’s strongest idea is keeping those answers connected. A production system still needs persistence, real access enforcement and testing with the people responsible for maintaining a brand."
+    title: "Final Design"
+    text: "This study clarified an important distinction for me: editing a brand and sharing a reviewed version are different tasks. The interface makes that boundary visible. A production system would still need persistent storage, access controls and testing with people who maintain brand guidelines."
 ---
 
-A source-led brand-governance interface study based on Luna Vault.
+A brand management interface study based on Luna Vault.

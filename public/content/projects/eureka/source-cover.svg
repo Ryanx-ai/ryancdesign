@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <title>Eureka CMS — curriculum workspace</title>
+  <rect width="1600" height="1000" fill="#fff3ea"/>
+  <rect x="0" width="28" height="1000" fill="#f26a1b"/>
+  <text x="150" y="490" fill="#111111" font-family="Helvetica,Arial,sans-serif" font-weight="700" font-size="190" letter-spacing="-8">Eureka CMS</text>
+  <path d="M150 550h160" stroke="#f26a1b" stroke-width="12"/>
+  <text x="150" y="625" fill="#5f6368" font-family="Helvetica,Arial,sans-serif" font-size="32" letter-spacing="3">PROGRAMMES / MODULES / MORSELS</text>
+</svg>
