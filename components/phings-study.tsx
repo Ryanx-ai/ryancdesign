@@ -29,29 +29,21 @@ export function PhingsStudy() {
   const [world, setWorld] = useState(initialWorld);
   const [notice, setNotice] = useState("Select an element, then choose a patch of ground.");
   const [dragging, setDragging] = useState(false);
-  const [view, setView] = useState<"World" | "Compare" | "Inhabitants">("World");
-  const [destroyed, setDestroyed] = useState(false);
-  function restore() { setWorld(initialWorld()); setDestroyed(false); setMode("Grow"); setTool("Plant"); setNotice("World restored. The Phings can return."); }
   function place(index: number, choice: Tool = tool) {
     const destructive = ["Fire", "Pollution", "Hazard"].includes(choice);
-    setDestroyed(destructive);
     setWorld(current => current.map((patch, i) => i === index ? {
       growth: destructive ? 0 : Math.min(3, patch.growth + (choice === "Sunlight" ? 0 : 1)),
       effect: choice,
     } : patch));
-    setNotice(destructive ? `${choice} has darkened the world. Restore the world or use a Grow element to bring it back.` : `Patch ${index + 1}: ${responses[choice]}`);
+    setNotice(`Patch ${index + 1}: ${responses[choice]}`);
     setDragging(false);
   }
   return <div className="terrarium">
-    <header><div><strong>Pangea</strong><span>A small world, inhabited by Phings</span></div><button onClick={restore}><RotateCcw size={14}/> Restore world</button></header>
-    <div className="pangea-views" role="group" aria-label="Pangea views">{(["World","Compare","Inhabitants"] as const).map(name=><button key={name} aria-pressed={view===name} onClick={()=>{setView(name);if(name==="Compare"){setDestroyed(true);setNotice("Compare a living world with the blacked-out destruction state. Restore to try another direction.");}}}>{name}</button>)}</div>
+    <header><div><strong>Pangea</strong><span>Phings / digital terrarium</span></div><button onClick={() => { setWorld(initialWorld()); setNotice("World reset. Choose an element to begin again."); }}><RotateCcw size={14}/> Reset world</button></header>
     <div className="terrarium-layout">
-      <div className={`pangea-stage ${view==="Compare"?"is-comparing":""}`}>
-      {view==="Compare" && <div className="terrarium-world pangea-reference"><Image src="/projects/pangea/world-concept.webp" alt="Living Pangea landscape before disruption" fill sizes="(max-width: 800px) 100vw, 450px"/><span className="terrarium-label">Before / living world</span><span className="terrarium-world-caption">Reference state</span></div>}
-      {view==="Inhabitants" ? <div className="pangea-inhabitants"><span>The inhabitants</span><h3>Meet the Phings.</h3><p>Small forms that belong to the world, not a menu of tasks.</p><Image src="/content/projects/phings/characters.webp" alt="Three Phing inhabitants in cream, moss and clay" width={1536} height={1024} sizes="(max-width: 800px) 100vw, 900px"/><p className="pangea-character-note">Character concept art · not a final roster</p></div> : <div className={`terrarium-world ${dragging ? "is-dragging" : ""} ${destroyed?"is-destroyed":""}`}>
+      <div className={`terrarium-world ${dragging ? "is-dragging" : ""}`}>
         <Image src="/projects/pangea/world-concept.webp" alt="Pangea concept landscape with forest and a river" fill sizes="(max-width: 800px) 100vw, 900px"/>
-        <span className="terrarium-label">{view==="Compare"?"After / your intervention":"The clearing"}</span>
-        {destroyed && <div className="pangea-blackout"><Flame size={26}/><strong>The world has gone dark.</strong><span>Growth and inhabitants are no longer visible.</span></div>}
+        <span className="terrarium-label">The clearing</span>
         <div className="terrarium-patches" role="group" aria-label="Terrarium placement patches">
           {world.map((patch, index) => {
             const Effect = tools.find(item => item.name === patch.effect)?.icon;
@@ -68,10 +60,8 @@ export function PhingsStudy() {
           })}
         </div>
         <span className="terrarium-world-caption">Interactive concept · scripted visual responses</span>
-      </div>}
       </div>
       <aside>
-        {view==="Inhabitants" ? <div className="pangea-field-notes"><span className="study-kicker">Pangea / Phings</span><h3>A world and its inhabitants.</h3><p>Pangea is the environment. Phings are the small creatures that live within it.</p><p>Their simple forms leave room for behaviour and character to develop through play.</p><button onClick={()=>setView("World")}>Return to the world</button></div> : <>
         <div className="terrarium-modes" role="group" aria-label="Terrarium interaction mode">{(["Grow", "Destroy"] as const).map(item => <button key={item} aria-pressed={mode === item} onClick={() => { setMode(item); setTool(item === "Grow" ? "Plant" : "Fire"); }}>{item}</button>)}</div>
         <h3>{mode === "Grow" ? "Help it grow." : "Change its course."}</h3>
         <p>{mode === "Grow" ? "Add something the world can use." : "See how disruption changes the ground."}</p>
@@ -80,10 +70,8 @@ export function PhingsStudy() {
             onDragStart={event => { setTool(name); setDragging(true); event.dataTransfer.setData("application/x-phings-tool", name); event.dataTransfer.effectAllowed = "copy"; }} onDragEnd={() => setDragging(false)}>
             <Icon size={21}/><span>{name}</span>
           </button>)}</div>
-        {destroyed && <button className="pangea-restore" onClick={restore}><RotateCcw size={16}/> Bring the world back</button>}
-        <p className="terrarium-help">Drag an element onto the clearing, or select it and tap a patch. Keyboard: Tab to a patch and press Enter. Destruction blacks out the world; it never removes your controls.</p>
+        <p className="terrarium-help">Drag an element onto the clearing, or select it and tap a patch. Keyboard: Tab to a patch and press Enter.</p>
         <p className="terrarium-notice" role="status">{notice}</p>
-        </>}
       </aside>
     </div>
     <footer>Speculative game interface. Changes stay in this page and reset on reload.</footer>
