@@ -10,6 +10,7 @@
 .resume-download:hover{background:#54e5ec0b;border-color:var(--accent)}
 .resume-opening .resume-summary{max-width:62ch;font-size:1.05rem;line-height:1.7;margin:2rem 0 0}
 .design-study :is(a,button,input,select):focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.pf-console :is(button,input,select):focus-visible{outline-color:#7054c4}
 .design-study select{font:inherit;min-height:44px}
 .design-media img[src*="/pufflet/identity-"]{background:#f4efe6}
 .phings-world:has(.phings-chat){display:block;background:#e4ead9}.phings-world:has(.phings-chat) .phings-world-note{position:static;display:block;margin:0 1.2rem 1.2rem;width:fit-content}
