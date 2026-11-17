@@ -5,7 +5,7 @@ export type LiveProject = {
   image: string;
   imageAlt: string;
   mediaFit: "cover" | "contain" | "wordmark";
-  status: "live" | "prototype" | "coming-soon";
+  status: "live" | "prototype" | "coming-soon" | "paused";
   category?: string;
   /** Only visible projects are included in public project surfaces and metadata. */
   visible: boolean;
@@ -14,6 +14,18 @@ export type LiveProject = {
 };
 
 export const liveProjects: LiveProject[] = [
+  {
+    slug: "tosker",
+    name: "Tosker",
+    description: "Born from travelling with friends. A shared map for the places, plans and conversations that make a trip together.",
+    image: "/projects/tosker/wordmark.svg",
+    imageAlt: "Tosker — gold squirrel and ivory wordmark",
+    mediaFit: "contain",
+    status: "paused",
+    category: "Brand / Product design / Development",
+    visible: true,
+    caseStudyUrl: "/projects/tosker",
+  },
   {
     slug: "shinysim",
     name: "ShinySim",
@@ -38,16 +50,6 @@ export const liveProjects: LiveProject[] = [
     visible: true,
     caseStudyUrl: "/projects/checkmate",
     liveUrl: "https://pkmn-checkmate-galaxy.vercel.app",
-  },
-  {
-    slug: "tosker",
-    name: "Tosker",
-    description: "A shared digital room for the things we do together.",
-    image: "/projects/toskerlogo-full-white.svg",
-    imageAlt: "Tosker",
-    mediaFit: "contain",
-    status: "coming-soon",
-    visible: true,
   },
 ];
 
